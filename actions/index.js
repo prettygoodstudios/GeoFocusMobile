@@ -1,4 +1,5 @@
-import {logIn} from "./auth";
+import {logIn, authenticate} from "./auth";
 import {getLocations} from "./locations";
+import {setLoading} from "./loading";
 
-export {logIn, getLocations};
+export {logIn, authenticate, getLocations, setLoading};

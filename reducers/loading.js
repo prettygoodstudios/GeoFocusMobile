@@ -1,21 +1,21 @@
-import {GET_LOCATIONS, AUTHENTICATE} from "../actions/types";
+import {SET_LOADING} from "../actions/types";
 
 const INIT_STATE = {
-  locations: []
+  loading: false
 }
 
 export default function(state = INIT_STATE, action){
   switch(action.type){
-    case AUTHENTICATE:
-    case GET_LOCATIONS:
+    case SET_LOADING:
       return{
         ...state,
-        locations: action.payload
+        loading: action.payload
       }
+      break;
     default:
       return{
         ...state
       }
+      break;
   }
-
 }
