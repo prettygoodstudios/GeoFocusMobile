@@ -18,6 +18,7 @@ import styles from "./styles";
 import Login from "./components/auth/login";
 
 import LocationsIndex from "./components/locations/index";
+import LocationsShow from "./components/locations/show";
 
 import TitleBar from "./components/layout/titleBar";
 import Spinner from "./components/widgets/spinner";
@@ -34,6 +35,7 @@ export default class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/locations" component={LocationsIndex} />
+                <Route path="/locations/:id" component={LocationsShow} />
               </Switch>
             </Router>
           </ScrollView>

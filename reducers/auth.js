@@ -1,4 +1,4 @@
-import {LOG_IN} from "../actions/types";
+import {LOG_IN, AUTHENTICATE } from "../actions/types";
 
 const INIT_STATE = {
   user: {
@@ -8,6 +8,7 @@ const INIT_STATE = {
 
 export default function(state = INIT_STATE, action){
   switch(action.type){
+    case AUTHENTICATE:
     case LOG_IN:
       return{
         ...state,

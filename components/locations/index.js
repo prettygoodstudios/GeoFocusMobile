@@ -7,6 +7,7 @@ const {Marker, Callout} = MapView;
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
+import history from "../../history";
 import mapStyles from "../../styles/map";
 import baseStyles from "../../styles/";
 
@@ -47,7 +48,7 @@ class LocationsIndex extends Component {
               <Callout style={mapStyles.callout} >
                 <Text style={[baseStyles.h1]}>{l.title}</Text>
                 <Text style={{width: 300}}>{l.full_address}</Text>
-                {Platform.OS === "ios" ? <Button content="View" onPress={() => console.log("View me!")}/> : <Text style={{width: 300}}>Tap to View!</Text>}
+                {Platform.OS === "ios" ? <Button content="View" onPress={() => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))}/> : <Text style={{width: 300}}>Tap to View!</Text>}
               </Callout>
             </Marker>
           )
