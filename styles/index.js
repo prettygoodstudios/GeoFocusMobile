@@ -25,9 +25,12 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   button: {
+    marginTop: 20,
+    marginBottom: 20,
     height: 50,
     backgroundColor: PRIMARY_COLOR,
     borderRadius: 25,
+    flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"

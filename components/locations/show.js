@@ -5,8 +5,10 @@ import {connect} from "react-redux";
 import * as actions from "../../actions";
 import history from "../../history";
 import baseStyles from "../../styles";
+import photoTitleStyles from "../../styles/photoTitle";
 
 import Button from "../widgets/button";
+import PhotoGrid from "../photos/photoGrid";
 
 class LocationsShow extends Component {
   render(){
@@ -14,21 +16,17 @@ class LocationsShow extends Component {
     const {city} = location;
     return(
       <View>
-        <Text style={baseStyles.h1}>{city}</Text>
-        <View>
-          {photos.map((p, i) => {
-            const {caption, img_url, offsetX, offsetY, width, height, zoom, user_id} = p;
-            return(
-              <View key={i}>
-                <Image
-                  style={{minWidth: "100%", height: 300}}
-                  source={{uri: img_url.url}}
-                />
-                <Text>{caption}</Text>
-              </View>
-            )
-          })}
+        <View style={photoTitleStyles.container}>
+          <Image
+            style={photoTitleStyles.image}
+            source={{uri: photos[0].img_url}}
+          />
+          <View style={photoTitleStyles.mask}>
+            <Text style={photoTitleStyles.title}>{city}</Text>
+          </View>
         </View>
+        <PhotoGrid photos={photos} />
+        <View style={{height: 100}}></View>
         <Button content="Go Home" onPress={() => history.push("/locations")}/>
         <View style={{height: 200}}></View>
       </View>
