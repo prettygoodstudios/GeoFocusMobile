@@ -13,6 +13,7 @@ const photoCardStyles = StyleSheet.create({
   card: {
     flex: 1,
     flexBasis: "30%",
+    maxWidth: "33%",
     height: 200,
     margin: 5,
     position: "relative"

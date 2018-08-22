@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     fontWeight: "400"
   },
   body: {
-    flex: 10
+    
   },
   center: {
     flexDirection: "row",

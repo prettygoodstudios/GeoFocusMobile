@@ -12,7 +12,7 @@ const titleBarStyles = StyleSheet.create({
     backgroundColor: PRIMARY_COLOR,
     alignItems: "center",
     justifyContent: "center",
-    flexBasis: "10%"
+    flexBasis: 100
   },
   bolded: {
     fontWeight: "700",

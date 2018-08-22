@@ -7,10 +7,10 @@ import * as actions from "../../actions";
 import history from "../../history";
 import {USER} from "../../storageKeys";
 import baseStyles from "../../styles";
-import profileStyles from "../../styles/profile";
 
 import Button from "../widgets/button";
 import PhotoGrid from "../photos/photoGrid";
+import UsersHeader from "./header";
 
 class Profile extends Component {
 
@@ -64,21 +64,7 @@ class Profile extends Component {
 
       <View>
         { !this.state.loading &&
-          <View style={profileStyles.header}>
-            <Image
-              style={profileStyles.headerImage}
-              source={{uri: profile_img.url}}
-            />
-            <View style={profileStyles.headerInfo}>
-              <Text style={profileStyles.headerTitle}>{display}</Text>
-              <Text style={profileStyles.headerEmail}>{email}</Text>
-            </View>
-            <View style={profileStyles.headerBackgroundMask}></View>
-            <Image
-              style={profileStyles.headerBackgroundImage}
-              source={{uri: photos[0].img_url.url  }}
-            />
-          </View>
+          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url}/>
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
         <PhotoGrid photos={mapedPhotos} />
