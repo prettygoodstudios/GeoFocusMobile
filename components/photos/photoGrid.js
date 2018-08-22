@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {View, Text, Image, TouchableWithoutFeedback} from "react-native";
 
 import photoCardStyles from "../../styles/photoCard";
+import baseStyles from "../../styles";
 
 export default class PhotoGrid extends Component{
   constructor(){
@@ -12,6 +13,9 @@ export default class PhotoGrid extends Component{
   }
   render(){
     const {photos} = this.props;
+    if(photos.length == 0){
+      return <Text style={baseStyles.h1}>No Photos Available</Text>;
+    }
     return(
       <View style={photoCardStyles.container}>
         {photos.map((p, i) => {

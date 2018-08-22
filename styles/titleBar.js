@@ -10,9 +10,9 @@ const titleText = {
 const titleBarStyles = StyleSheet.create({
   titleBar: {
     backgroundColor: PRIMARY_COLOR,
-    height: 100,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexBasis: "10%"
   },
   bolded: {
     fontWeight: "700",

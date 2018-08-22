@@ -1,12 +1,14 @@
 import {StyleSheet} from "react-native";
+import hexRgb from "hex-rgb";
+
 import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
 
 const photoCardStyles = StyleSheet.create({
   container: {
-    flex: 3,
     width: "100%",
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginTop: 0
   },
   card: {
     flex: 1,
@@ -18,9 +20,7 @@ const photoCardStyles = StyleSheet.create({
   cardImageWrapper: {
     height: 200,
     width: "100%",
-    overflow: "hidden",
-    marginTop: 50,
-    marginBottom: 100
+    overflow: "hidden"
   },
   cardText: {
     color: OFF_WHITE,
@@ -28,13 +28,12 @@ const photoCardStyles = StyleSheet.create({
     zIndex: 99999
   },
   selected: {
-    backgroundColor: PRIMARY_COLOR,
-    opacity: 0.5,
+    backgroundColor: `rgba(144, 19, 254, 0.5)`,
     width: "100%",
     height: "100%",
     zIndex: 999,
     position: "absolute",
-    top: 50,
+    top: 0,
     left: 0,
     flexDirection: "column",
     alignItems: "center",

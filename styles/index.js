@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
     fontWeight: "400"
   },
   body: {
-    backgroundColor: OFF_WHITE,
-    flex: 1,
-    height: "100%"
+    flex: 10
   },
   center: {
     flexDirection: "row",
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
-    height: "100%"
+    flexBasis: "80%"
   },
   button: {
     marginTop: 20,

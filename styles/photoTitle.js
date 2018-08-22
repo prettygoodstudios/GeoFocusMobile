@@ -9,7 +9,8 @@ const photoTitleStyles = StyleSheet.create({
     overflow: "hidden",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 5
   },
   title: {
     color: OFF_WHITE,

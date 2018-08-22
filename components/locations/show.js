@@ -13,16 +13,16 @@ import PhotoGrid from "../photos/photoGrid";
 class LocationsShow extends Component {
   render(){
     const {photos, location} = this.props;
-    const {city} = location;
+    const {city, title} = location;
     return(
       <View>
         <View style={photoTitleStyles.container}>
           <Image
             style={photoTitleStyles.image}
-            source={{uri: photos[0].img_url}}
+            source={{uri: photos[0] ? photos[0].img_url : 'https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg'}}
           />
           <View style={photoTitleStyles.mask}>
-            <Text style={photoTitleStyles.title}>{city}</Text>
+            <Text style={photoTitleStyles.title}>{title}</Text>
           </View>
         </View>
         <PhotoGrid photos={photos} />
