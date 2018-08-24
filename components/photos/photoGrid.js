@@ -1,16 +1,30 @@
 import React, {Component} from "react";
 import {View, Text, Image, TouchableWithoutFeedback} from "react-native";
+import {connect} from "react-redux";
 
+import * as actions from "../../actions";
+import history from '../../history';
 import photoCardStyles from "../../styles/photoCard";
 import baseStyles from "../../styles";
 
-export default class PhotoGrid extends Component{
+import Button from "../widgets/button";
+
+class PhotoGrid extends Component{
   constructor(){
     super();
     this.state = {
       selected: -1
     }
   }
+
+  visitUser = (id) => {
+    this.props.getUser(id, () => this.success(id), (e) =>  console.log("Error", e));
+  }
+
+  success = (id) => {
+    history.push("/users/show/"+id);
+  }
+
   render(){
     const {photos} = this.props;
     if(photos.length == 0){
@@ -32,13 +46,15 @@ export default class PhotoGrid extends Component{
                 <View style={this.state.selected == i ? photoCardStyles.selected : {display: "none"}}>
                   <Text style={photoCardStyles.cardText}>{caption}</Text>
                   <Text style={photoCardStyles.cardText}>{views} Views</Text>
-                  <View style={{flexDirection: "row"}}>
-                    <Image
-                      style={{width: 20, height: 20, borderRadius: 10}}
-                      source={{uri: user_profile}}
-                    />
-                    <Text style={photoCardStyles.cardText}>{user_display}</Text>
-                  </View>
+                  <TouchableWithoutFeedback  onPress={() => this.visitUser(user_id)}>
+                    <View style={{flexDirection: "row"}}>
+                      <Image
+                        style={{width: 20, height: 20, borderRadius: 10}}
+                        source={{uri: user_profile}}
+                      />
+                      <Text style={photoCardStyles.cardText}>{user_display}</Text>
+                    </View>
+                  </TouchableWithoutFeedback>
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -48,3 +64,5 @@ export default class PhotoGrid extends Component{
     );
   }
 }
+
+export default connect(null, actions)(PhotoGrid);

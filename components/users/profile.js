@@ -52,7 +52,7 @@ class Profile extends Component {
     const mapedPhotos = photos ? photos.map((p) => {
       return {
         ...p,
-        display,
+        user_display: display,
         img_url: p.img_url.url,
         user_profile: profile_img.url,
         email,
