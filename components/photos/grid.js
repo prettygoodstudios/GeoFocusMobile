@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, Image, TouchableWithoutFeedback} from "react-native";
+import {View, Text, Image, TouchableWithoutFeedback, Dimensions} from "react-native";
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
@@ -8,6 +8,11 @@ import photoCardStyles from "../../styles/photoCard";
 import baseStyles from "../../styles";
 
 import Button from "../widgets/button";
+
+
+const {height, width} = Dimensions.get('window');
+const cardHeight = Math.floor((width-52)/3);
+const scaleRatio = cardHeight/400;
 
 class PhotoGrid extends Component{
   constructor(){
@@ -38,12 +43,16 @@ class PhotoGrid extends Component{
       <View style={photoCardStyles.container}>
         {photos.map((p, i) => {
           const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile, id} = p;
+          const finalWidth = zoom != null ? width*zoom*scaleRatio : width*scaleRatio;
+          const finalHeight = zoom != null ? height*zoom*scaleRatio : height*scaleRatio;
+          const finalOffsetX = offsetX != null ? offsetX*scaleRatio : 0;
+          const finalOffsetY = offsetY != null ? offsetY*scaleRatio : 0;
           return(
             <TouchableWithoutFeedback key={i} onPress={() => this.setState({ selected: this.state.selected == i ? -1 : i })}>
               <View style={photoCardStyles.card}>
                 <View style={photoCardStyles.cardImageWrapper}>
                   <Image
-                    style={{minWidth: "100%", height: 200}}
+                    style={finalWidth != 0 ? {position: "absolute", height: finalHeight, width: finalWidth, left: finalOffsetX, top: finalOffsetY} : { minWidth: "100%", minHeight: cardHeight}}
                     source={{uri: img_url}}
                   />
                 </View>

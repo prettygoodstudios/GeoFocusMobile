@@ -1,7 +1,11 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Dimensions} from "react-native";
 import hexRgb from "hex-rgb";
 
 import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
+
+let {height, width} = Dimensions.get('window');
+let cardHeight = Math.floor((width-52)/3);
+
 
 const photoCardStyles = StyleSheet.create({
   container: {
@@ -14,14 +18,15 @@ const photoCardStyles = StyleSheet.create({
     flex: 1,
     flexBasis: "30%",
     maxWidth: "33%",
-    height: 200,
-    margin: 5,
+    height: cardHeight,
+    margin: 2,
     position: "relative"
   },
   cardImageWrapper: {
-    height: 200,
+    height: cardHeight,
     width: "100%",
-    overflow: "hidden"
+    overflow: "hidden",
+    position: "relative"
   },
   cardText: {
     color: OFF_WHITE,
