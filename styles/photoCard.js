@@ -26,7 +26,8 @@ const photoCardStyles = StyleSheet.create({
   cardText: {
     color: OFF_WHITE,
     opacity: 1,
-    zIndex: 99999
+    zIndex: 99999,
+    textAlign: "center"
   },
   selected: {
     backgroundColor: `rgba(144, 19, 254, 0.5)`,

@@ -9,7 +9,7 @@ import {USER} from "../../storageKeys";
 import baseStyles from "../../styles";
 
 import Button from "../widgets/button";
-import PhotoGrid from "../photos/photoGrid";
+import PhotoGrid from "../photos/grid";
 import UsersHeader from "./header";
 
 class Profile extends Component {

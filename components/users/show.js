@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import * as actions from "../../actions";
 
 import Button from "../widgets/button";
-import PhotoGrid from "../photos/photoGrid";
+import PhotoGrid from "../photos/grid";
 import UsersHeader from "./header";
 
 class UsersShow extends Component {

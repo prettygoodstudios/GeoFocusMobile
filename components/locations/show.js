@@ -8,7 +8,7 @@ import baseStyles from "../../styles";
 import photoTitleStyles from "../../styles/photoTitle";
 
 import Button from "../widgets/button";
-import PhotoGrid from "../photos/photoGrid";
+import PhotoGrid from "../photos/grid";
 
 class LocationsShow extends Component {
   render(){

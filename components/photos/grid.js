@@ -25,6 +25,10 @@ class PhotoGrid extends Component{
     history.push("/users/show/"+id);
   }
 
+  showPhoto = (id) => {
+    this.props.getPhoto(id, () => history.push("/photos/"+id), () => console.log("Error", e));
+  }
+
   render(){
     const {photos} = this.props;
     if(photos.length == 0){
@@ -33,7 +37,7 @@ class PhotoGrid extends Component{
     return(
       <View style={photoCardStyles.container}>
         {photos.map((p, i) => {
-          const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile} = p;
+          const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile, id} = p;
           return(
             <TouchableWithoutFeedback key={i} onPress={() => this.setState({ selected: this.state.selected == i ? -1 : i })}>
               <View style={photoCardStyles.card}>
@@ -53,6 +57,11 @@ class PhotoGrid extends Component{
                         source={{uri: user_profile}}
                       />
                       <Text style={photoCardStyles.cardText}>{user_display}</Text>
+                    </View>
+                  </TouchableWithoutFeedback>
+                  <TouchableWithoutFeedback onPress={() => this.showPhoto(id)}>
+                    <View>
+                      <Text style={photoCardStyles.cardText}>View Image</Text>
                     </View>
                   </TouchableWithoutFeedback>
                 </View>

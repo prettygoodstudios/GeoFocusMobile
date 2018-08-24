@@ -4,3 +4,4 @@ export const GET_LOCATION = 'GET_LOCATION';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const SET_LOADING = 'SET_LOADING';
 export const GET_USER = 'GET_USER';
+export const GET_PHOTO = 'GET_PHOTO';
