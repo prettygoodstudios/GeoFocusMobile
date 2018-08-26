@@ -54,11 +54,6 @@ class LocationsIndex extends Component {
           )
         })}
       </MapView>
-        {this.state.loaded && this.props.locations.map((l, i) => {
-          return(
-            <Text key={i}>{l.city}</Text>
-          )
-        })}
       </View>
     );
   }

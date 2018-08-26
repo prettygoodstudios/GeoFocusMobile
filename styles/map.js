@@ -1,6 +1,10 @@
-import {StyleSheet, Platform} from "react-native";
+import {StyleSheet, Platform, Dimensions} from "react-native";
 
 import {PRIMARY_COLOR} from "./variables";
+
+const {height, width} = Dimensions.get('window');
+const mapHeight = height - 150;
+const mapWidth = width + 40;
 
 const markerAndroid = {
 
@@ -14,8 +18,9 @@ const markerPlatform = Platform.OS === 'ios' ? markerIos : markerAndroid;
 
 const styles = StyleSheet.create({
   map: {
-    width: "100%",
-    height: 400,
+    width: mapWidth,
+    height: mapHeight,
+    margin: -20,
     flex: 1
   },
   marker: {

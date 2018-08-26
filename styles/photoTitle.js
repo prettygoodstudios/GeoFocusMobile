@@ -14,7 +14,8 @@ const photoTitleStyles = StyleSheet.create({
   },
   title: {
     color: OFF_WHITE,
-    fontSize: 50
+    fontSize: 50,
+    textAlign: "center"
   },
   mask: {
     position: "absolute",

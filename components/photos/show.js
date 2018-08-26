@@ -1,9 +1,11 @@
 import React, {Component} from "react" ;
-import {View, Text, Image, TouchableWithoutFeedback} from "react-native";
+import {View, Text, Image, TouchableOpacity} from "react-native";
+import {Icon} from "react-native-elements";
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
 import history from '../../history';
+import photoStyles from "../../styles/photo";
 
 import Button from "../widgets/button";
 
@@ -23,19 +25,22 @@ class PhotosShow extends Component {
     const {img_url, caption, views, display, profile_img, location_title} = this.props;
     return(
       <View>
-        <Image source={{uri: img_url.url}} style={{maxWidth: "100%", height: 200}}/>
-        <TouchableWithoutFeedback onPress={() => this.goToUser()}>
-          <View>
-            <Image source={{uri: profile_img.url }} style={{width: 20, height: 20, borderRadius: 10, overflow: "hidden"}}/>
-            <Text>{display}</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <Text> - {caption} - {views} Views</Text>
-        <TouchableWithoutFeedback onPress={() => this.goToLocation()}>
-          <View>
-            <Text>{location_title}</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Image source={{uri: img_url.url}} style={photoStyles.photo}/>
+        <View style={photoStyles.textWrapper}>
+          <TouchableOpacity onPress={() => this.goToUser()}>
+            <View style={photoStyles.profile}>
+              <Image source={{uri: profile_img.url }} style={photoStyles.profileImg}/>
+              <Text style={photoStyles.profileText}>{display}</Text>
+            </View>
+          </TouchableOpacity>
+          <Text style={photoStyles.caption}> - {caption} - {views} Views - </Text>
+          <TouchableOpacity onPress={() => this.goToLocation()}>
+            <View style={photoStyles.location}>
+              <Icon name="place"  style={photoStyles.locationIcon} />
+              <Text style={photoStyles.locationText}>{location_title}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
