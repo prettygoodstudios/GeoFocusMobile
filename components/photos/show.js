@@ -8,6 +8,7 @@ import history from '../../history';
 import photoStyles from "../../styles/photo";
 
 import Button from "../widgets/button";
+import ProfileImage from "../users/profileImage";
 
 class PhotosShow extends Component {
 
@@ -22,14 +23,14 @@ class PhotosShow extends Component {
   }
 
   render(){
-    const {img_url, caption, views, display, profile_img, location_title} = this.props;
+    const {img_url, caption, views, display, profile_img, location_title, user_zoom, user_width, user_height, user_offsetX, user_offsetY} = this.props;
     return(
       <View>
         <Image source={{uri: img_url.url}} style={photoStyles.photo}/>
         <View style={photoStyles.textWrapper}>
           <TouchableOpacity onPress={() => this.goToUser()}>
             <View style={photoStyles.profile}>
-              <Image source={{uri: profile_img.url }} style={photoStyles.profileImg}/>
+              <ProfileImage url={profile_img.url} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} size={40}/>
               <Text style={photoStyles.profileText}>{display}</Text>
             </View>
           </TouchableOpacity>

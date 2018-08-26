@@ -10,14 +10,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center"
   },
-  profileImg: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    overflow: "hidden",
-    marginRight: 4
-  },
   profileText: {
+    marginLeft: 4,
     fontSize: 35,
     fontWeight: "600"
   },

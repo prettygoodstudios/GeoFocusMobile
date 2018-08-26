@@ -10,7 +10,7 @@ import UsersHeader from "./header";
 
 class UsersShow extends Component {
   render(){
-    const {profile_img, email, display, photos, id} = this.props;
+    const {profile_img, email, display, photos, id, zoom, height, width, offsetX, offsetY} = this.props;
 
     const mapedPhotos = photos ? photos.map((p) => {
       return {
@@ -19,13 +19,18 @@ class UsersShow extends Component {
         img_url: p.img_url.url,
         user_profile: profile_img.url,
         email,
-        user_id: id
+        user_id: id,
+        user_zoom: zoom,
+        user_width: width,
+        user_height: height,
+        user_offsetX: offsetX,
+        user_offsetY: offsetY
       }
     }) : [];
 
     return(
       <View>
-        <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url}/>
+        <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         <PhotoGrid photos={mapedPhotos} />
       </View>
     );

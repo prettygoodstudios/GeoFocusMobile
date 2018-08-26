@@ -22,10 +22,7 @@ const profileStyles = StyleSheet.create({
     color: OFF_WHITE
   },
   headerImage: {
-    marginLeft: 20,
-    height: 100,
-    width: 100,
-    borderRadius: 50,
+    marginLeft: 10,
     marginRight: 10,
     zIndex: 9999999999
   },

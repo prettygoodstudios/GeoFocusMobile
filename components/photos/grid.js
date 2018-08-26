@@ -8,6 +8,7 @@ import photoCardStyles from "../../styles/photoCard";
 import baseStyles from "../../styles";
 
 import Button from "../widgets/button";
+import ProfileImage from "../users/profileImage";
 
 
 const {height, width} = Dimensions.get('window');
@@ -42,7 +43,7 @@ class PhotoGrid extends Component{
     return(
       <View style={photoCardStyles.container}>
         {photos.map((p, i) => {
-          const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile, id} = p;
+          const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile, id, user_zoom, user_width, user_height, user_offsetX, user_offsetY} = p;
           const finalWidth = zoom != null ? width*zoom*scaleRatio : width*scaleRatio;
           const finalHeight = zoom != null ? height*zoom*scaleRatio : height*scaleRatio;
           const finalOffsetX = offsetX != null ? offsetX*scaleRatio : 0;
@@ -61,10 +62,7 @@ class PhotoGrid extends Component{
                   <Text style={photoCardStyles.cardText}>{views} Views</Text>
                   <TouchableWithoutFeedback  onPress={() => this.visitUser(user_id)}>
                     <View style={{flexDirection: "row"}}>
-                      <Image
-                        style={{width: 20, height: 20, borderRadius: 10}}
-                        source={{uri: user_profile}}
-                      />
+                      <ProfileImage url={user_profile} size={20} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} />
                       <Text style={photoCardStyles.cardText}>{user_display}</Text>
                     </View>
                   </TouchableWithoutFeedback>

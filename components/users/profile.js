@@ -48,8 +48,8 @@ class Profile extends Component {
   }
 
   render(){
-    const {display, profile_img, email, user_id, photos, loading} = this.props;
-
+    const {display, profile_img, email, user_id, photos, loading, zoom, height, width, offsetX, offsetY} = this.props;
+    console.log("My Zoom", zoom);
     const mapedPhotos = photos ? photos.map((p) => {
       return {
         ...p,
@@ -57,7 +57,12 @@ class Profile extends Component {
         img_url: p.img_url.url,
         user_profile: profile_img.url,
         email,
-        user_id
+        user_id,
+        user_zoom: zoom,
+        user_width: width,
+        user_height: height,
+        user_offsetX: offsetX,
+        user_offsetY: offsetY
       }
     }) : [];
 
@@ -65,7 +70,7 @@ class Profile extends Component {
 
       <View>
         { !this.state.loading &&
-          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url}/>
+          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
         <PhotoGrid photos={mapedPhotos} />
