@@ -1,4 +1,4 @@
-import {LOG_IN, AUTHENTICATE } from "../actions/types";
+import {LOG_IN, AUTHENTICATE, CLEAR_USER} from "../actions/types";
 
 const INIT_STATE = {
   user: {
@@ -16,6 +16,11 @@ export default function(state = INIT_STATE, action){
           ...action.payload,
           authenticated: true
         }
+      }
+    case CLEAR_USER:
+      return{
+        ...state,
+        user: action.payload
       }
     default:
       return{

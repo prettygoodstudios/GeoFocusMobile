@@ -39,10 +39,11 @@ class Profile extends Component {
 
   logOut = () => {
     this.clearData();
+    this.props.clearUser();
+    history.push("/");
   }
 
   clearData = async () => {
-    history.push("/");
     AsyncStorage.removeItem(USER);
   }
 

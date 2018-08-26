@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {LOG_IN, AUTHENTICATE} from "./types";
+import {LOG_IN, AUTHENTICATE, CLEAR_USER} from "./types";
 import {ROOT_URL} from "../backend";
 
 export function logIn(params, success, error){
@@ -14,6 +14,15 @@ export function logIn(params, success, error){
     }).catch((e) => {
       error(e);
     });
+  }
+}
+
+export function clearUser(){
+  return {
+    type: CLEAR_USER,
+    payload: {
+      authenticated: false
+    }
   }
 }
 
