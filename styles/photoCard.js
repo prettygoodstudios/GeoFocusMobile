@@ -4,20 +4,23 @@ import hexRgb from "hex-rgb";
 import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
 
 let {height, width} = Dimensions.get('window');
-let cardHeight = Math.floor((width-52)/3);
+let containerWidth = width - 36;
+let cardHeight = Math.floor((width-48)/3);
 
 
 const photoCardStyles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: containerWidth,
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 0
+    marginTop: 0,
+    marginLeft: -2,
+    marginRight: -2
   },
   card: {
     flex: 1,
     flexBasis: "30%",
-    maxWidth: "33%",
+    maxWidth: cardHeight,
     height: cardHeight,
     margin: 2,
     position: "relative"
@@ -33,6 +36,25 @@ const photoCardStyles = StyleSheet.create({
     opacity: 1,
     zIndex: 99999,
     textAlign: "center"
+  },
+  profileGroup: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  profileText: {
+    fontSize: 15,
+    color: OFF_WHITE,
+    opacity: 1,
+    zIndex: 99999
+  },
+  viewImage: {
+    backgroundColor: PRIMARY_COLOR,
+    height: 30,
+    borderRadius: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 10,
+    paddingRight: 10
   },
   selected: {
     backgroundColor: `rgba(144, 19, 254, 0.5)`,

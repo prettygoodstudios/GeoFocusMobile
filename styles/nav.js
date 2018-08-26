@@ -1,16 +1,20 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Dimensions} from "react-native";
 
 import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
+
+const {height, width} = Dimensions.get('window');
+
 
 const navStyles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     height: 50,
     justifyContent: "flex-start",
-    width: "100%"
+    width: width
   },
   option: {
-    flex: 1,
+    width: Math.floor(width/2),
+    height: "100%",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -18,7 +22,7 @@ const navStyles = StyleSheet.create({
   },
   icon: {
     color: OFF_WHITE,
-    fontSize: 30
+    fontSize: 30,
   }
 });
 

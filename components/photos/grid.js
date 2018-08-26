@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, Image, TouchableWithoutFeedback, Dimensions} from "react-native";
+import {View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions} from "react-native";
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
@@ -60,17 +60,17 @@ class PhotoGrid extends Component{
                 <View style={this.state.selected == i ? photoCardStyles.selected : {display: "none"}}>
                   <Text style={photoCardStyles.cardText}>{caption}</Text>
                   <Text style={photoCardStyles.cardText}>{views} Views</Text>
-                  <TouchableWithoutFeedback  onPress={() => this.visitUser(user_id)}>
-                    <View style={{flexDirection: "row"}}>
-                      <ProfileImage url={user_profile} size={20} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} />
-                      <Text style={photoCardStyles.cardText}>{user_display}</Text>
+                  <TouchableOpacity  onPress={() => this.visitUser(user_id)}>
+                    <View style={photoCardStyles.profileGroup}>
+                      <ProfileImage url={user_profile} size={25} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} />
+                      <Text style={photoCardStyles.profileText}>{user_display}</Text>
                     </View>
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback onPress={() => this.showPhoto(id)}>
-                    <View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.showPhoto(id)}>
+                    <View style={photoCardStyles.viewImage}>
                       <Text style={photoCardStyles.cardText}>View Image</Text>
                     </View>
-                  </TouchableWithoutFeedback>
+                  </TouchableOpacity>
                 </View>
               </View>
             </TouchableWithoutFeedback>

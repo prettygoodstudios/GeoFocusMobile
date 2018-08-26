@@ -32,6 +32,7 @@ class UsersShow extends Component {
       <View>
         <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         <PhotoGrid photos={mapedPhotos} />
+        <View style={{width: "100%", height: 50}}></View>
       </View>
     );
   }

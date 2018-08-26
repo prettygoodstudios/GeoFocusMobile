@@ -74,6 +74,7 @@ class Profile extends Component {
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
         <PhotoGrid photos={mapedPhotos} />
+        <View style={{width: "100%", height: 50}}></View>
       </View>
     );
   }
