@@ -9,10 +9,11 @@ import LocationsForm from "./form";
 
 class LocationsNew extends Component {
 
+
   render() {
     return(
       <View>
-        <LocationsForm title="New Location"/>
+        <LocationsForm title="New Location" submit={this.props.createLocation}/>
       </View>
     );
   }

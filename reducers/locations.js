@@ -1,4 +1,4 @@
-import {GET_LOCATIONS, GET_LOCATION} from "../actions/types";
+import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION} from "../actions/types";
 
 const INIT_STATE = {
   locations: [],
@@ -17,6 +17,12 @@ export default function(state = INIT_STATE, action){
       return{
         ...state,
         locations: action.payload
+      }
+      break;
+    case CREATE_LOCATION:
+      return{
+        ...state,
+        location: action.payload
       }
     default:
       return{

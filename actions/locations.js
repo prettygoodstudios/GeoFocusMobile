@@ -35,11 +35,16 @@ export function getLocation(id, success, error){
 export function createLocation(params, success, error){
   return function(dispatch) {
     axios.post(`${ROOT_URL}/locations`, params).then((r) => {
-      dispatch({
-        type: CREATE_LOCATION,
-        payload: r.data
-      })
-      success();
+      const {errors, id} = r.data;
+      if(!errors){
+        dispatch({
+          type: CREATE_LOCATION,
+          payload: r.data
+        });
+        success(id);
+      }else{
+        error(Object.values(errors)[0]);
+      }
     }).catch((e) => {
       error(e);
     })
