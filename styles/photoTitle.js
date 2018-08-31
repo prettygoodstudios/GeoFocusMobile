@@ -4,7 +4,9 @@ import {OFF_WHITE} from "./variables";
 const photoTitleStyles = StyleSheet.create({
   container: {
     height: 300,
-    width: "100%",
+    marginLeft: -20,
+    marginRight: -20,
+    marginTop: -20,
     position: "relative",
     overflow: "hidden",
     flexDirection: "column",

@@ -26,9 +26,9 @@ class LocationsShow extends Component {
           </View>
         </View>
         <PhotoGrid photos={photos} />
-        <View style={{height: 100}}></View>
+        <View style={{height: 20}}></View>
         <Button content="Go Home" onPress={() => history.push("/locations")}/>
-        <View style={{height: 200}}></View>
+        <View style={{height: 20}}></View>
       </View>
     );
   }

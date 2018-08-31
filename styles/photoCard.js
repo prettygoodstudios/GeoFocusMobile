@@ -39,7 +39,9 @@ const photoCardStyles = StyleSheet.create({
   },
   profileGroup: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 10,
+    marginTop: 10
   },
   profileText: {
     fontSize: 15,

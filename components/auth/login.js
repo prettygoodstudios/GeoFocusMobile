@@ -8,6 +8,7 @@ import history from "../../history";
 import {USER} from "../../storageKeys";
 
 import FormGroup from "../form/group";
+import FormTitle from '../form/title';
 import Button from "../widgets/button";
 import Error from "../widgets/error";
 
@@ -89,9 +90,7 @@ class Login extends Component {
   render(){
     return(
       <View>
-        <View style={styles.center}>
-          <Text style={styles.h1}>Login</Text>
-        </View>
+        <FormTitle title="Login" />
         <FormGroup placeholder="Email" label="Email" value={this.state.email} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Password" label="Password" value={this.state.password} secure={true} onChangeText={this.onChangeText} />
         <Button onPress={() => this.submit()} content="Sign In" />

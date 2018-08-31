@@ -40,20 +40,23 @@ class LocationsIndex extends Component {
   render(){
     return(
       <View>
-      <MapView style={[mapStyles.map]}>
-        {this.state.loaded && this.props.locations.map((l, i) => {
-          return(
-            <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS != "ios" ? () => console.log("View Me!")  : () => console.log("Callout Click")}>
-              <Icon name="place" iconStyle={mapStyles.markerIcon}/>
-              <Callout style={mapStyles.callout} >
-                <Text style={[baseStyles.h1]}>{l.title}</Text>
-                <Text style={{width: 300}}>{l.full_address}</Text>
-                {Platform.OS === "ios" ? <Button content="View" onPress={() => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))}/> : <Text style={{width: 300}}>Tap to View!</Text>}
-              </Callout>
-            </Marker>
-          )
-        })}
-      </MapView>
+        <MapView style={[mapStyles.map]}>
+          {this.state.loaded && this.props.locations.map((l, i) => {
+            return(
+              <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS != "ios" ? () => console.log("View Me!")  : () => console.log("Callout Click")}>
+                <Icon name="place" iconStyle={mapStyles.markerIcon}/>
+                <Callout style={mapStyles.callout} >
+                  <Text style={[baseStyles.h1]}>{l.title}</Text>
+                  <Text style={{width: 300}}>{l.full_address}</Text>
+                  {Platform.OS === "ios" ? <Button content="View" onPress={() => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))}/> : <Text style={{width: 300}}>Tap to View!</Text>}
+                </Callout>
+              </Marker>
+            )
+          })}
+        </MapView>
+        <View style={mapStyles.createButtonWrapper}>
+          <Button content="Create Location" onPress={() => history.push("/locations/new/create")} />
+        </View>
       </View>
     );
   }

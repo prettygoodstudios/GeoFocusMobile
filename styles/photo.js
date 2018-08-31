@@ -3,8 +3,9 @@ import {StyleSheet} from "react-native";
 const styles = StyleSheet.create({
   photo: {
     marginBottom: 20,
-    maxWidth: "100%",
-    minHeight: 300
+    width: "100%",
+    minHeight: 300,
+    maxHeight: "100%"
   },
   profile: {
     flexDirection: "row",

@@ -49,7 +49,6 @@ class Profile extends Component {
 
   render(){
     const {display, profile_img, email, user_id, photos, loading, zoom, height, width, offsetX, offsetY} = this.props;
-    console.log("My Zoom", zoom);
     const mapedPhotos = photos ? photos.map((p) => {
       return {
         ...p,

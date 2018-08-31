@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {ROOT_URL} from "../backend";
-import {GET_LOCATIONS, GET_LOCATION} from "./types";
+import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION} from "./types";
 
 export function getLocations(success, error){
   return function(dispatch){
@@ -29,5 +29,19 @@ export function getLocation(id, success, error){
     }).catch((e) => {
       error(e);
     });
+  }
+}
+
+export function createLocation(params, success, error){
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/locations`, params).then((r) => {
+      dispatch({
+        type: CREATE_LOCATION,
+        payload: r.data
+      })
+      success();
+    }).catch((e) => {
+      error(e);
+    })
   }
 }

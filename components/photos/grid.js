@@ -44,10 +44,10 @@ class PhotoGrid extends Component{
       <View style={photoCardStyles.container}>
         {photos.map((p, i) => {
           const {caption, img_url, offsetX, offsetY, width, views, height, zoom, user_id, user_display, user_profile, id, user_zoom, user_width, user_height, user_offsetX, user_offsetY} = p;
-          const finalWidth = zoom != null ? width*zoom*scaleRatio : width*scaleRatio;
-          const finalHeight = zoom != null ? height*zoom*scaleRatio : height*scaleRatio;
-          const finalOffsetX = offsetX != null ? offsetX*scaleRatio : 0;
-          const finalOffsetY = offsetY != null ? offsetY*scaleRatio : 0;
+          const finalWidth = zoom != null ? Math.ceil(width*zoom*scaleRatio) : Math.ceil(width*scaleRatio);
+          const finalHeight = zoom != null ? Math.ceil(height*zoom*scaleRatio) : Math.ceil(height*scaleRatio);
+          const finalOffsetX = offsetX != null ? Math.ceil(offsetX*scaleRatio) : 0;
+          const finalOffsetY = offsetY != null ? Math.ceil(offsetY*scaleRatio) : 0;
           return(
             <TouchableWithoutFeedback key={i} onPress={() => this.setState({ selected: this.state.selected == i ? -1 : i })}>
               <View style={photoCardStyles.card}>

@@ -7,6 +7,9 @@ const profileStyles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     height: 300,
+    marginLeft: -20,
+    marginRight: -20,
+    marginTop: -20,
     overflow: "hidden",
     position: "relative"
   },
@@ -23,8 +26,7 @@ const profileStyles = StyleSheet.create({
   },
   headerImage: {
     marginLeft: 10,
-    marginRight: 10,
-    zIndex: 9999999999
+    marginRight: 10
   },
   headerBackground: {
     position: "absolute",

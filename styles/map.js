@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     color: PRIMARY_COLOR,
     fontSize: 50,
     ...markerIos
+  },
+  createButtonWrapper: {
+    position: "absolute",
+    top: 0,
+    right: 20,
+    width: 300
   }
 });
 

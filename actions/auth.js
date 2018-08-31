@@ -35,7 +35,7 @@ export function authenticate(params, success, error){
       });
       success(r.data);
     }).catch((e) => {
-      error(e);
+      error("Your session has expired.");
     });
   }
 }
