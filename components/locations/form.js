@@ -24,6 +24,14 @@ class LocationsForm extends Component {
     }
   }
 
+  componentDidMount(){
+    if(this.props.initialValues){
+      this.setState({
+        ...this.props.initialValues
+      });
+    }
+  }
+
   submit = () => {
     const {authentication_token, email} = this.props;
     const params = {
@@ -66,7 +74,8 @@ class LocationsForm extends Component {
         <FormGroup placeholder="State" label="State" value={state} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Country" label="Country" value={country} onChangeText={this.onChangeText} />
         <Error error={error}/>
-        <Button content="Create" onPress={() => this.submit()}/>
+        <Button content={this.props.button} onPress={() => this.submit()}/>
+        <View style={{height: 50}}></View>
       </View>
     );
   }

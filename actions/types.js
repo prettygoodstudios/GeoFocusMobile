@@ -7,3 +7,4 @@ export const SET_LOADING = 'SET_LOADING';
 export const GET_USER = 'GET_USER';
 export const GET_PHOTO = 'GET_PHOTO';
 export const CLEAR_USER = 'CLEAR_USER';
+export const UPDATE_LOCATION = 'UPDATE_LOCATION';

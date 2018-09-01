@@ -22,6 +22,7 @@ import UsersShow from "./components/users/show";
 import LocationsIndex from "./components/locations/index";
 import LocationsShow from "./components/locations/show";
 import LocationsNew from "./components/locations/new";
+import LocationsEdit from "./components/locations/edit";
 
 import PhotosShow from "./components/photos/show";
 
@@ -43,6 +44,7 @@ export default class App extends React.Component {
                 <Route exact path="/locations" component={LocationsIndex} />
                 <Route exact path="/locations/:id" component={LocationsShow} />
                 <Route path="/locations/new/create" component={LocationsNew} />
+                <Route path="/locations/:id/update" component={LocationsEdit} />
                 <Route exact path="/users/profile" component={Login} />
                 <Route path="/users/show/:id" component={UsersShow} />
                 <Route path="/users/profile/show" component={Profile} />

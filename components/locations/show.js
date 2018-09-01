@@ -13,7 +13,7 @@ import PhotoGrid from "../photos/grid";
 class LocationsShow extends Component {
   render(){
     const {photos, location} = this.props;
-    const {city, title} = location;
+    const {city, title, id} = location;
     return(
       <View>
         <View style={photoTitleStyles.container}>
@@ -25,6 +25,7 @@ class LocationsShow extends Component {
             <Text style={photoTitleStyles.title}>{title}</Text>
           </View>
         </View>
+        <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
         <PhotoGrid photos={photos} />
         <View style={{height: 20}}></View>
         <Button content="Go Home" onPress={() => history.push("/locations")}/>

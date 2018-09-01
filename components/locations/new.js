@@ -13,7 +13,7 @@ class LocationsNew extends Component {
   render() {
     return(
       <View>
-        <LocationsForm title="New Location" submit={this.props.createLocation}/>
+        <LocationsForm title="New Location" button="Create" submit={this.props.createLocation}/>
       </View>
     );
   }
