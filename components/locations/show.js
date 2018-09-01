@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 
 import * as actions from "../../actions";
 import history from "../../history";
+import {fullAddress} from "../../helpers/locations";
+import {ShowIfMine} from "../../helpers/locations"
 import baseStyles from "../../styles";
 import photoTitleStyles from "../../styles/photoTitle";
 
@@ -25,7 +27,10 @@ class LocationsShow extends Component {
             <Text style={photoTitleStyles.title}>{title}</Text>
           </View>
         </View>
-        <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
+        <Text style={[baseStyles.p, { marginTop: 10}]}>{fullAddress(location)}</Text>
+        <ShowIfMine>
+          <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
+        </ShowIfMine>
         <PhotoGrid photos={photos} />
         <View style={{height: 20}}></View>
         <Button content="Go Home" onPress={() => history.push("/locations")}/>
