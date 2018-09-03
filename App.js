@@ -25,6 +25,7 @@ import LocationsNew from "./components/locations/new";
 import LocationsEdit from "./components/locations/edit";
 
 import PhotosShow from "./components/photos/show";
+import PhotosNew from "./components/photos/new";
 
 import TitleBar from "./components/layout/titleBar";
 import Nav from "./components/layout/nav";
@@ -48,7 +49,8 @@ export default class App extends React.Component {
                 <Route exact path="/users/profile" component={Login} />
                 <Route path="/users/show/:id" component={UsersShow} />
                 <Route path="/users/profile/show" component={Profile} />
-                <Route path="/photos/:id" component={PhotosShow} />
+                <Route exact path="/photos/:id" component={PhotosShow} />
+                <Route path="/photos/new/upload" component={PhotosNew} />
               </Switch>
             </Router>
           </ScrollView>

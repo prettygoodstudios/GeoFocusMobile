@@ -34,6 +34,7 @@ class LocationsShow extends Component {
         <ShowIfMine>
           <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
         </ShowIfMine>
+        <Button content="Add Photo" onPress={() => history.push(`/photos/new/upload`)}/>
         <PhotoGrid photos={photos} />
         <View style={{height: 20}}></View>
         <ReviewsNew />
