@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {ROOT_URL} from "../backend";
-import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW} from "./types";
+import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW} from "./types";
 
 export function getLocations(success, error){
   return function(dispatch){
@@ -85,5 +85,23 @@ export function createReview(params, success, error){
     }).catch((e) => {
       error(e);
     })
+  }
+}
+
+export function editReview(id, params, success, error){
+  return function(dispatch){
+    axios.put(`${ROOT_URL}/reviews/${id}`, params).then((r) => {
+      if(!r.data.errors){
+        dispatch({
+          type: EDIT_REVIEW,
+          payload: r.data
+        });
+        success();
+      }else{
+        error(Object.values(r.data.errors)[0]);
+      }
+    }).catch((e) => {
+      error(e);
+    });
   }
 }

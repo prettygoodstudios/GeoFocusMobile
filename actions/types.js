@@ -9,3 +9,4 @@ export const GET_PHOTO = 'GET_PHOTO';
 export const CLEAR_USER = 'CLEAR_USER';
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
 export const CREATE_REVIEW = 'CREATE_REVIEW';
+export const EDIT_REVIEW = 'EDIT_REVIEW';

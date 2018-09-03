@@ -8,6 +8,7 @@ import reviewStyles from "../../styles/review";
 import baseStyles from "../../styles";
 
 import ProfileImage from "../users/profileImage";
+import ReviewsEdit from "./edit";
 
 class ReviewStream extends Component {
 
@@ -39,6 +40,7 @@ class ReviewStream extends Component {
                 <Text style={reviewStyles.scoreText}>{score}</Text>
               </View>
               <Text style={baseStyles.p}>{message}</Text>
+              <ReviewsEdit id={id} userId={user_id} score={score} message={message}/>
             </View>
           )
         })}

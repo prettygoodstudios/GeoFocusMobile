@@ -20,6 +20,16 @@ class ReviewsForm extends Component {
     }
   }
 
+  componentDidMount(){
+    const {score, message} = this.props;
+    if(score && message){
+      this.setState({
+        score: score,
+        message: message
+      });
+    }
+  }
+
   onChangeText = (l, t) => {
     let tempState = {}
     tempState[l.toLowerCase()] = t;
@@ -40,11 +50,18 @@ class ReviewsForm extends Component {
       email,
       token: authentication_token
     }
-    this.props.submit(params, this.success, this.error);
+    if(!this.props.id){
+      this.props.submit(params, this.success, this.error);
+    }else{
+      this.props.submit(this.props.id, params, this.success, this.error);
+    }
   }
 
   success = () => {
     this.props.setLoading(false);
+    if(this.props.success){
+      this.props.success();
+    }
   }
 
   error = (e) => {
