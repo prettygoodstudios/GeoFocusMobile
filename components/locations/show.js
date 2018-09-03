@@ -12,7 +12,7 @@ import photoTitleStyles from "../../styles/photoTitle";
 import Button from "../widgets/button";
 import PhotoGrid from "../photos/grid";
 import ReviewStream from "../reviews/stream";
-import ReviewsForm from "../reviews/form";
+import ReviewsNew from "../reviews/new";
 
 class LocationsShow extends Component {
 
@@ -36,7 +36,7 @@ class LocationsShow extends Component {
         </ShowIfMine>
         <PhotoGrid photos={photos} />
         <View style={{height: 20}}></View>
-        <ReviewsForm />
+        <ReviewsNew />
         <ReviewStream />
         <Button content="Go Home" onPress={() => history.push("/locations")}/>
         <View style={{height: 20}}></View>
