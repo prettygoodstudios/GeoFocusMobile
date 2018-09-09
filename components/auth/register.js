@@ -12,35 +12,44 @@ import FormTitle from '../form/title';
 import Button from "../widgets/button";
 import Error from "../widgets/error";
 
-class Login extends Component {
+class Register extends Component {
 
   constructor(){
     super();
     this.state = {
+      displayName: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
       error: ""
     }
   }
 
   componentDidMount(){
-    this.props.setLoading(true);
-    this.retrieveUser();
   }
 
   onChangeText = (l, t) => {
     let tempState = {}
-    tempState[l.toLowerCase()] = t;
+    tempState[l] = t;
     this.setState({
       ...tempState
     });
   }
 
   submit = () => {
-    this.props.logIn(this.state, this.success, this.error);
+    const {email, password, displayName, passwordConfirmation} = this.state;
+    const params = {
+      email,
+      password,
+      display: displayName,
+      password_confirmation: passwordConfirmation
+    }
+    this.props.setLoading(true);
+    this.props.createUser(params, this.success, this.error);
   }
 
   success = (user) => {
+    this.props.setLoading(false);
     this.storeUser(user);
     history.push("/locations");
   }
@@ -53,36 +62,10 @@ class Login extends Component {
     }
   }
 
-  retrieveUser = async () => {
-    try {
-      const value = await AsyncStorage.getItem(USER);
-      if (value !== null) {
-        const user = {
-          token: value.split(", ")[0],
-          email: value.split(", ")[1]
-        }
-        this.props.authenticate(user, this.success, this.error);
-      }else{
-        this.props.setLoading(false);
-      }
-     } catch (error) {
-       console.log("Error Retrieving User:", error);
-       this.props.setLoading(false);
-     }
-  }
 
   error = (e) => {
-    let eMessage = "";
-    switch(e.toString()){
-      case "Error: Request failed with status code 401":
-        eMessage = "Incorrect password or email."
-        break;
-      default:
-        eMessage = "Could not establish a connection to the server."
-        break;
-    }
     this.setState({
-      error: eMessage
+      error: e
     });
     this.props.setLoading(false);
   }
@@ -90,11 +73,13 @@ class Login extends Component {
   render(){
     return(
       <View>
-        <FormTitle title="Login" />
+        <FormTitle title="Register" />
+        <FormGroup placeholder="Display Name" label="Display Name" value={this.state.display} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Email" label="Email" value={this.state.email} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Password" label="Password" value={this.state.password} secure={true} onChangeText={this.onChangeText} />
-        <Button onPress={() => this.submit()} content="Sign In" />
-        <Button onPress={() => history.push("/register")} content="Create Acount" />
+        <FormGroup placeholder="Password Confirmation" label="Password Confirmation" value={this.state.passwordConfirmation} secure={true} onChangeText={this.onChangeText} />
+        <Button onPress={() => this.submit()} content="Register" />
+        <Button onPress={() => history.push("/")} content="Sign In" />
         <Error error={this.state.error} />
       </View>
     );
@@ -107,4 +92,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, actions)(Login);
+export default connect(mapStateToProps, actions)(Register);

@@ -16,6 +16,7 @@ import history from "./history";
 import styles from "./styles";
 
 import Login from "./components/auth/login";
+import Register from "./components/auth/register";
 import Profile from "./components/users/profile";
 import UsersShow from "./components/users/show";
 
@@ -42,6 +43,7 @@ export default class App extends React.Component {
             <Router history={history}>
               <Switch>
                 <Route exact path="/" component={Login} />
+                <Route exact path="/register" component={Register} />
                 <Route exact path="/locations" component={LocationsIndex} />
                 <Route exact path="/locations/:id" component={LocationsShow} />
                 <Route path="/locations/new/create" component={LocationsNew} />

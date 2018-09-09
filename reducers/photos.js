@@ -1,4 +1,4 @@
-import {GET_PHOTO} from "../actions/types";
+import {GET_PHOTO, UPLOAD_PHOTO} from "../actions/types";
 
 const INIT_STATE = {
   photo: {}
@@ -6,6 +6,7 @@ const INIT_STATE = {
 
 export default function(state = INIT_STATE, action){
   switch(action.type){
+    case UPLOAD_PHOTO:
     case GET_PHOTO:
       return {
         ...state,

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {View, Text} from "react-native";
-import {ImagePicker, Permissions} from "expo";
+import {View, Text, Image} from "react-native";
+import {ImagePicker, ImageManipulator, Permissions} from "expo";
 import {connect} from "react-redux";
 
 import * as actions from "../../actions";
@@ -9,28 +9,19 @@ import baseStyles from "../../styles";
 
 import FormGroup from "../form/group";
 import Button from "../widgets/button";
+import Error from "../widgets/error";
+import PhotosCropper from "./cropper";
 
 class PhotosNew extends Component {
   constructor(){
     super();
     this.state = {
       caption: "",
-      image: ""
+      image: {},
+      error: "",
+      cropData: {}
     }
   }
-
-  componentDidMount(){
-    this.getCameraRollPermissions();
-  }
-
-  getCameraRollPermissions = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status !== 'granted') {
-      alert('The camera roll permissions are required inorder to upload a photo.');
-      history.push("/locations");
-    }
-  }
-
 
   onChangeText = (l, t) => {
     let tempState = {}
@@ -40,35 +31,79 @@ class PhotosNew extends Component {
     });
   }
 
-  pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 4],
-      base64: true
+  setImage = (image) => {
+    this.setState({ image });
+  }
+
+  submit = () => {
+    this.props.setLoading(true);
+    const {location, user} = this.props;
+    const {image, caption, cropData} = this.state;
+    const name = image.uri.split("/")[image.uri.split("/").length-1].split(".")[0];
+    const fileType = image.uri.split(".")[image.uri.split(".").length - 1];
+
+    let formData = new FormData();
+    formData.append('caption', caption);
+    formData.append('email', user.email);
+    formData.append('token', user.authentication_token);
+    formData.append('location', location.id);
+    formData.append('offsetX', cropData.marginLeft);
+    formData.append('offsetY', cropData.marginTop);
+    formData.append('zoom', cropData.zoom);
+    formData.append('img_url', {
+      uri: image.uri,
+      name: `${name}.${fileType}`,
+      type: `image/${fileType}`,
     });
+    console.log("My Image URl", {
+      uri: image.uri,
+      name: `${name}.${fileType}`,
+      type: `image/${fileType}`,
+    });
+    this.props.uploadPhoto(formData, this.success, this.error);
+  }
 
-    console.log(result);
+  success = (id) => {
+    this.props.setLoading(false);
+    history.push(`/photos/${id}`);
+  }
 
-    if (!result.cancelled) {
-      this.setState({ image: result.uri });
-    }
-  };
+  error = (e) => {
+    console.log("My Error",e);
+    this.props.setLoading(false);
+    this.setState({
+      error: e
+    });
+  }
+
+  updateCropData = (data) => {
+    console.log("My Crop Data",data);
+    this.setState({
+      cropData: data
+    });
+  }
 
   render(){
-    const {caption} = this.state;
+    const {caption, image} = this.state;
     return(
       <View>
         <Text style={baseStyles.h1}>Upload a Photo</Text>
         <FormGroup placeholder="Caption" label="Caption" value={caption} onChangeText={this.onChangeText} />
-        <Button content="Select Photo" onPress={() => this.pickImage()}/>
+        <PhotosCropper image={image.uri} width={image.width} height={image.height} updateCropData={this.updateCropData} setImage={this.setImage}/>}
+        <Error error={this.state.error} />
+        <Button content="Upload" onPress={() => this.submit()}/>
+        <View style={{height: 50}}></View>
       </View>
     );
   }
 }
 
 function mapStateToProps(state){
+  const {user} = state.auth;
+  const {location} = state.locations.location;
   return{
-
+    user,
+    location
   }
 }
 

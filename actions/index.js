@@ -1,7 +1,7 @@
-import {logIn, authenticate, clearUser} from "./auth";
+import {logIn, authenticate, clearUser, createUser} from "./auth";
 import {getLocations, getLocation, createLocation, updateLocation, createReview, editReview} from "./locations";
 import {setLoading} from "./loading";
 import {getUser} from "./users";
-import {getPhoto} from "./photos";
+import {getPhoto, uploadPhoto} from "./photos";
 
-export {logIn, authenticate, getLocations, getLocation, setLoading, getUser, getPhoto, clearUser, createLocation, updateLocation, createReview, editReview};
+export {logIn, authenticate, getLocations, getLocation, setLoading, getUser, getPhoto, clearUser, createLocation, updateLocation, createReview, editReview, uploadPhoto, createUser};

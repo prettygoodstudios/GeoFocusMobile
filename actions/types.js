@@ -10,3 +10,5 @@ export const CLEAR_USER = 'CLEAR_USER';
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
 export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const EDIT_REVIEW = 'EDIT_REVIEW';
+export const UPLOAD_PHOTO = 'UPLOAD_PHOTO';
+export const CREATE_USER = 'CREATE_USER';
