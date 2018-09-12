@@ -51,8 +51,22 @@ class PhotosCropper extends Component {
           // The accumulated gesture distance since becoming responder is
           // gestureState.d{x,y}
           if(this.state.gestures){
-            this.panX(gestureState.vx*100);
-            this.panY(gestureState.vy*100);
+            if(gestureState.numberActiveTouches == 1){
+              this.panX(gestureState.vx*100);
+              this.panY(gestureState.vy*100);
+            }else{
+              this.zoom(gestureState.vx);
+            }
+          }
+          if(evt){
+            const {touches, changedTouches} = evt;
+            console.log("event", evt.touches);
+            if(touches){
+              let deltaTouches = [];
+              changedTouches.forEach((t) => {
+                console.log("Touch",t);
+              });
+            }
           }
         },
         onPanResponderTerminationRequest: (evt, gestureState) => true,
@@ -120,9 +134,13 @@ class PhotosCropper extends Component {
   zoom = (delta) => {
     const {marginLeft, marginTop, zoom} = this.state;
     const {width, height} = this.props;
-    if(zoom + delta >= 0 && marginLeft + width*(zoom+delta) > 300 && marginTop + height*(zoom+delta) > 300){
+    const deltaX = true ? 0 : (width*(zoom+delta)-width*zoom)*-0.25;
+    const deltaY = true ? 0 : (height*(zoom+delta)-height*zoom)*-0.5;
+    if(zoom + delta >= 0 && marginLeft + deltaX + width*(zoom+delta) > 300 && marginTop + deltaY + height*(zoom+delta) > 300){
       this.setState({
-        zoom: zoom + delta
+        zoom: zoom + delta,
+        marginLeft: this.state.marginLeft + deltaX,
+        marginTop: this.state.marginTop + deltaY
       });
     }
     this.cropData();
@@ -175,6 +193,7 @@ class PhotosCropper extends Component {
             <View style={cropperStyles.imageWrapper} {...this.panResponder.panHandlers} >
               <Image source={{uri: image}} style={[cropperStyles.image, imageStyle]}/>
             </View>
+            { /*
             <View style={cropperStyles.cropperOptionWrapper}>
               <CropperOption content="^" onPress={() => this.panY(-10)}/>
               <CropperOption content="\/" onPress={() => this.panY(10)}/>
@@ -183,6 +202,8 @@ class PhotosCropper extends Component {
               <CropperOption content="+" onPress={() => this.zoom(0.1)}/>
               <CropperOption content="-" onPress={() => this.zoom(-0.1)}/>
             </View>
+            */
+            }
           </View>
         }
         <Button content="Select Photo" onPress={() => this.pickImage()}/>

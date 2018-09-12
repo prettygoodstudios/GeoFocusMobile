@@ -36,31 +36,35 @@ class PhotosNew extends Component {
   }
 
   submit = () => {
-    this.props.setLoading(true);
     const {location, user} = this.props;
     const {image, caption, cropData} = this.state;
-    const name = image.uri.split("/")[image.uri.split("/").length-1].split(".")[0];
-    const fileType = image.uri.split(".")[image.uri.split(".").length - 1];
+    if(image.uri){
+      this.props.setLoading(true);
+      const name = image.uri.split("/")[image.uri.split("/").length-1].split(".")[0];
+      const fileType = image.uri.split(".")[image.uri.split(".").length - 1];
 
-    let formData = new FormData();
-    formData.append('caption', caption);
-    formData.append('email', user.email);
-    formData.append('token', user.authentication_token);
-    formData.append('location', location.id);
-    formData.append('offsetX', cropData.marginLeft);
-    formData.append('offsetY', cropData.marginTop);
-    formData.append('zoom', cropData.zoom);
-    formData.append('img_url', {
-      uri: image.uri,
-      name: `${name}.${fileType}`,
-      type: `image/${fileType}`,
-    });
-    console.log("My Image URl", {
-      uri: image.uri,
-      name: `${name}.${fileType}`,
-      type: `image/${fileType}`,
-    });
-    this.props.uploadPhoto(formData, this.success, this.error);
+      let formData = new FormData();
+      formData.append('caption', caption);
+      formData.append('email', user.email);
+      formData.append('token', user.authentication_token);
+      formData.append('location', location.id);
+      formData.append('offsetX', cropData.marginLeft);
+      formData.append('offsetY', cropData.marginTop);
+      formData.append('zoom', cropData.zoom);
+      formData.append('img_url', {
+        uri: image.uri,
+        name: `${name}.${fileType}`,
+        type: `image/${fileType}`,
+      });
+      console.log("My Image URl", {
+        uri: image.uri,
+        name: `${name}.${fileType}`,
+        type: `image/${fileType}`,
+      });
+      this.props.uploadPhoto(formData, this.success, this.error);
+    }else{
+      this.error("You must select an image.");
+    }
   }
 
   success = (id) => {
