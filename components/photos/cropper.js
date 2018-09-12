@@ -1,6 +1,9 @@
 import React, {Component} from "react";
-import {View, Text, TouchableOpacity, Image} from "react-native";
+import {View, Text, TouchableOpacity, Image, PanResponder} from "react-native";
 import {ImagePicker, Permissions} from 'expo';
+import {connect} from "react-redux";
+
+import * as actions from "../../actions";
 
 import Button from "../widgets/button";
 
@@ -24,8 +27,50 @@ class PhotosCropper extends Component {
     this.state = {
       marginLeft: 0,
       marginTop: 0,
-      zoom: 1
+      zoom: 1,
+      gestures: true
     }
+
+    this.panResponder = PanResponder.create({
+        // Ask to be the responder:
+        onStartShouldSetPanResponder: (evt, gestureState) => true,
+        onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+        onMoveShouldSetPanResponder: (evt, gestureState) => true,
+        onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+
+        onPanResponderGrant: (evt, gestureState) => {
+          // The gesture has started. Show visual feedback so the user knows
+          // what is happening!
+
+          // gestureState.d{x,y} will be set to zero now
+          this.props.setScroll(false);
+        },
+        onPanResponderMove: (evt, gestureState) => {
+          // The most recent move distance is gestureState.move{X,Y}
+
+          // The accumulated gesture distance since becoming responder is
+          // gestureState.d{x,y}
+          if(this.state.gestures){
+            this.panX(gestureState.vx*100);
+            this.panY(gestureState.vy*100);
+          }
+        },
+        onPanResponderTerminationRequest: (evt, gestureState) => true,
+        onPanResponderRelease: (evt, gestureState) => {
+          // The user has released all touches while this view is the
+          // responder. This typically means a gesture has succeeded
+          this.props.setScroll(true);
+        },
+        onPanResponderTerminate: (evt, gestureState) => {
+          // Another component has become the responder, so this gesture
+          // should be cancelled
+        },
+        onShouldBlockNativeResponder: (evt, gestureState) => {
+          // Returns whether this component should block native components from becoming the JS
+          // responder. Returns true by default. Is currently only supported on android.
+          return true;
+        },
+      });
   }
 
   componentDidMount(){
@@ -107,6 +152,12 @@ class PhotosCropper extends Component {
     updateCropData(data);
   }
 
+  toggleGestures = () => {
+    this.setState({
+      gestures: this.state.gestures ? false : true
+    });
+  }
+
   render(){
     const {image, width, height} = this.props;
     const {marginLeft, marginTop, zoom} = this.state;
@@ -121,7 +172,7 @@ class PhotosCropper extends Component {
       <View style={cropperStyles.cropperWrapper}>
         {image &&
           <View>
-            <View style={cropperStyles.imageWrapper}>
+            <View style={cropperStyles.imageWrapper} {...this.panResponder.panHandlers} >
               <Image source={{uri: image}} style={[cropperStyles.image, imageStyle]}/>
             </View>
             <View style={cropperStyles.cropperOptionWrapper}>
@@ -140,4 +191,4 @@ class PhotosCropper extends Component {
   }
 }
 
-export default PhotosCropper;
+export default connect(null, actions)(PhotosCropper);

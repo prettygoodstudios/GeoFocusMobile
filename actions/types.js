@@ -12,3 +12,4 @@ export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const EDIT_REVIEW = 'EDIT_REVIEW';
 export const UPLOAD_PHOTO = 'UPLOAD_PHOTO';
 export const CREATE_USER = 'CREATE_USER';
+export const SET_SCROLL = 'SET_SCROLL';

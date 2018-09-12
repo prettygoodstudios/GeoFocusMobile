@@ -42,7 +42,13 @@ export function authenticate(params, success, error){
 
 export function createUser(params, success, error){
   return function(dispatch){
-    axios.post(`${ROOT_URL}/sessions/create_user`, params).then((r) => {
+    const headers = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    axios.post(`${ROOT_URL}/sessions/create_user`, params, headers).then((r) => {
       if(!r.data.errors){
         dispatch({
           type: CREATE_USER,
@@ -50,7 +56,9 @@ export function createUser(params, success, error){
         });
         success(r.data);
       }else{
-        error(Object.values(r.data.errors)[0]);
+        const key = Object.keys(r.data.errors)[0];
+        const message = Object.values(r.data.errors)[0];
+        error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`);
       }
     }).catch((e) => {
       error(e);

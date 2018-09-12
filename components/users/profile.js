@@ -69,7 +69,7 @@ class Profile extends Component {
 
       <View>
         { !this.state.loading &&
-          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0].img_url.url} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
+          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
         <PhotoGrid photos={mapedPhotos} />
