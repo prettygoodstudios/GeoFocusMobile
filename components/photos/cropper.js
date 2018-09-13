@@ -134,9 +134,9 @@ class PhotosCropper extends Component {
   zoom = (delta) => {
     const {marginLeft, marginTop, zoom} = this.state;
     const {width, height} = this.props;
-    const deltaX = true ? 0 : (width*(zoom+delta)-width*zoom)*-0.25;
-    const deltaY = true ? 0 : (height*(zoom+delta)-height*zoom)*-0.5;
-    if(zoom + delta >= 0 && marginLeft + deltaX + width*(zoom+delta) > 300 && marginTop + deltaY + height*(zoom+delta) > 300){
+    const deltaX = (width*(zoom+delta)-width*zoom)*-0.5;
+    const deltaY = (height*(zoom+delta)-height*zoom)*-0.5;
+    if(zoom + delta >= 0 && marginLeft + deltaX + width*(zoom+delta) > 300 && marginTop + deltaY + height*(zoom+delta) > 300 && marginLeft + deltaX <= 0 && marginTop + deltaY <= 0){
       this.setState({
         zoom: zoom + delta,
         marginLeft: this.state.marginLeft + deltaX,

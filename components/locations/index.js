@@ -23,6 +23,7 @@ class LocationsIndex extends Component {
   }
 
   componentDidMount(){
+    this.props.setLoading(true);
     this.props.getLocations(this.success, this.error);
   }
 

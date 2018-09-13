@@ -37,6 +37,7 @@ class Login extends Component {
   }
 
   submit = () => {
+    this.props.setLoading(true);
     this.props.logIn(this.state, this.success, this.error);
   }
 
@@ -76,6 +77,9 @@ class Login extends Component {
     switch(e.toString()){
       case "Error: Request failed with status code 401":
         eMessage = "Incorrect password or email."
+        break;
+      case "Your session has expired.":
+        eMessage = "Your session has expired."
         break;
       default:
         eMessage = "Could not establish a connection to the server."
