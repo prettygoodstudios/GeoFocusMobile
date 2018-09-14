@@ -6,6 +6,7 @@ import { Provider, connect } from 'react-redux';
 import reduxThunk from "redux-thunk";
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { Viewport } from '@skele/components';
 
 
 import reducers from './reducers';
@@ -38,23 +39,25 @@ class MyLayout extends Component{
     return(
       <View style={styles.body}>
         <TitleBar/>
-        <ScrollView style={styles.container} scrollEnabled={this.props.scroll}>
-          <Router history={history}>
-            <Switch>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/locations" component={LocationsIndex} />
-              <Route exact path="/locations/:id" component={LocationsShow} />
-              <Route path="/locations/new/create" component={LocationsNew} />
-              <Route path="/locations/:id/update" component={LocationsEdit} />
-              <Route exact path="/users/profile" component={Login} />
-              <Route path="/users/show/:id" component={UsersShow} />
-              <Route path="/users/profile/show" component={Profile} />
-              <Route exact path="/photos/:id" component={PhotosShow} />
-              <Route path="/photos/new/upload" component={PhotosNew} />
-            </Switch>
-          </Router>
-        </ScrollView>
+        <Viewport.Tracker>
+          <ScrollView style={styles.container} scrollEnabled={this.props.scroll}>
+            <Router history={history}>
+              <Switch>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/locations" component={LocationsIndex} />
+                <Route exact path="/locations/:id" component={LocationsShow} />
+                <Route path="/locations/new/create" component={LocationsNew} />
+                <Route path="/locations/:id/update" component={LocationsEdit} />
+                <Route exact path="/users/profile" component={Login} />
+                <Route path="/users/show/:id" component={UsersShow} />
+                <Route path="/users/profile/show" component={Profile} />
+                <Route exact path="/photos/:id" component={PhotosShow} />
+                <Route path="/photos/new/upload" component={PhotosNew} />
+              </Switch>
+            </Router>
+          </ScrollView>
+        </Viewport.Tracker>
         <Nav />
         <Spinner />
       </View>

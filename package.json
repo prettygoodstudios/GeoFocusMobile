@@ -19,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@skele/components": "^1.0.0-alpha.31",
     "axios": "^0.18.0",
     "expo": "^27.0.1",
     "hex-rgb": "^3.0.0",
