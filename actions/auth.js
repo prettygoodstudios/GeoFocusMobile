@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {LOG_IN, AUTHENTICATE, CLEAR_USER, CREATE_USER} from "./types";
 import {ROOT_URL} from "../backend";
+import {parseNetworkErrors} from "../helpers/errors";
 
 export function logIn(params, success, error){
   return function(dispatch){
@@ -12,7 +13,7 @@ export function logIn(params, success, error){
       });
       success(r.data);
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
@@ -35,7 +36,7 @@ export function authenticate(params, success, error){
       });
       success(r.data);
     }).catch((e) => {
-      error("Your session has expired.");
+      error(parseNetworkErrors(e, true));
     });
   }
 }
@@ -61,7 +62,7 @@ export function createUser(params, success, error){
         error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }

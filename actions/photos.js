@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {ROOT_URL} from "../backend";
 import {GET_PHOTO, UPLOAD_PHOTO} from "./types";
+import {parseNetworkErrors} from "../helpers/errors";
 
 export function getPhoto(id, success, error){
   return function(dispatch){
@@ -12,7 +13,7 @@ export function getPhoto(id, success, error){
       });
       success();
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
@@ -36,7 +37,7 @@ export function uploadPhoto(params, success, error){
         error(Object.values(r.data.errors)[0]);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }

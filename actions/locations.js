@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {ROOT_URL} from "../backend";
 import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW} from "./types";
+import {parseNetworkErrors} from "../helpers/errors";
 
 export function getLocations(success, error){
   return function(dispatch){
@@ -12,7 +13,7 @@ export function getLocations(success, error){
       });
       success();
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
@@ -27,7 +28,7 @@ export function getLocation(id, success, error){
       });
       success();
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
@@ -46,7 +47,7 @@ export function createLocation(params, success, error){
         error(Object.values(errors)[0]);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     })
   }
 }
@@ -65,7 +66,7 @@ export function updateLocation(params, success, error){
         error(Object.values(errors)[0]);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
@@ -83,7 +84,7 @@ export function createReview(params, success, error){
         error(Object.values(r.data.errors)[0]);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     })
   }
 }
@@ -101,7 +102,7 @@ export function editReview(id, params, success, error){
         error(Object.values(r.data.errors)[0]);
       }
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }

@@ -9,6 +9,7 @@ import {USER} from "../../storageKeys";
 import baseStyles from "../../styles";
 
 import Button from "../widgets/button";
+import Error from "../widgets/error";
 import PhotoGrid from "../photos/grid";
 import UsersHeader from "./header";
 
@@ -17,7 +18,8 @@ class Profile extends Component {
   constructor(){
     super();
     this.state = {
-      loading: true
+      loading: true,
+      error: ""
     }
   }
 
@@ -32,9 +34,11 @@ class Profile extends Component {
   }
 
   error = (e) => {
-    console.log(e);
     this.props.setLoading(false);
-    this.setState({loading: false});
+    this.setState({
+      loading: false,
+      error: e
+    });
   }
 
   logOut = () => {
@@ -49,6 +53,7 @@ class Profile extends Component {
 
   render(){
     const {display, profile_img, email, user_id, photos, loading, zoom, height, width, offsetX, offsetY} = this.props;
+    const {error} = this.state;
     const mapedPhotos = photos ? photos.map((p) => {
       return {
         ...p,
@@ -69,9 +74,10 @@ class Profile extends Component {
 
       <View>
         { !this.state.loading &&
-          <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
+          <UsersHeader profileImg={profile_img ? profile_img.url : ""} display={display} email={email} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
+        <Error error={error}/>
         <PhotoGrid photos={mapedPhotos} />
         <View style={{width: "100%", height: 50}}></View>
       </View>

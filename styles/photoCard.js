@@ -23,7 +23,8 @@ const photoCardStyles = StyleSheet.create({
     maxWidth: cardHeight,
     height: cardHeight,
     margin: 2,
-    position: "relative"
+    position: "relative",
+    backgroundColor: OFF_WHITE
   },
   placeholder: {
     flex: 1,

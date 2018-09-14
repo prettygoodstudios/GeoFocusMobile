@@ -73,20 +73,8 @@ class Login extends Component {
   }
 
   error = (e) => {
-    let eMessage = "";
-    switch(e.toString()){
-      case "Error: Request failed with status code 401":
-        eMessage = "Incorrect password or email."
-        break;
-      case "Your session has expired.":
-        eMessage = "Your session has expired."
-        break;
-      default:
-        eMessage = "Could not establish a connection to the server."
-        break;
-    }
     this.setState({
-      error: eMessage
+      error: e
     });
     this.props.setLoading(false);
   }

@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {GET_USER} from "./types";
 import {ROOT_URL} from "../backend";
+import {parseNetworkErrors} from "../helpers/errors";
 
 export function getUser(id, success, error){
   return function(dispatch){
@@ -12,7 +13,7 @@ export function getUser(id, success, error){
       });
       success();
     }).catch((e) => {
-      error(e);
+      error(parseNetworkErrors(e));
     });
   }
 }
