@@ -28,7 +28,8 @@ class PhotosCropper extends Component {
       marginLeft: 0,
       marginTop: 0,
       zoom: 1,
-      gestures: true
+      gestures: true,
+      touched: false
     }
 
     this.panResponder = PanResponder.create({
@@ -44,6 +45,11 @@ class PhotosCropper extends Component {
 
           // gestureState.d{x,y} will be set to zero now
           this.props.setScroll(false);
+          if(!this.state.touched){
+            this.setState({
+              touched: true
+            });
+          }
         },
         onPanResponderMove: (evt, gestureState) => {
           // The most recent move distance is gestureState.move{X,Y}
@@ -134,13 +140,22 @@ class PhotosCropper extends Component {
   zoom = (delta) => {
     const {marginLeft, marginTop, zoom} = this.state;
     const {width, height} = this.props;
-    const deltaX = (width*(zoom+delta)-width*zoom)*-0.5;
-    const deltaY = (height*(zoom+delta)-height*zoom)*-0.5;
-    if(zoom + delta >= 0 && marginLeft + deltaX + width*(zoom+delta) > 300 && marginTop + deltaY + height*(zoom+delta) > 300 && marginLeft + deltaX <= 0 && marginTop + deltaY <= 0){
+    const realWidth = width*zoom;
+    const realHeight = height*zoom;
+    const positionX = marginLeft/realWidth;
+    const positionY = marginTop/realHeight;
+    const relativeSizeX = 300/realWidth;
+    const relativeSizeY = 300/realHeight;
+    const centerX = positionX + relativeSizeX*0.5;
+    const centerY = positionY + relativeSizeY*0.5;
+    const newZoom = zoom + delta;
+    const newX = centerX*newZoom*width-(relativeSizeX*0.5*newZoom*width);
+    const newY = centerY*newZoom*height-(relativeSizeY*0.5*newZoom*height);
+    if(newZoom >= 0 && newX + width*newZoom > 300 && newY + height*newZoom > 300 && newX <= 0 && newY <= 0){
       this.setState({
-        zoom: zoom + delta,
-        marginLeft: this.state.marginLeft + deltaX,
-        marginTop: this.state.marginTop + deltaY
+        zoom: newZoom,
+        marginLeft: newX,
+        marginTop: newY
       });
     }
     this.cropData();
@@ -186,12 +201,31 @@ class PhotosCropper extends Component {
       height: height*zoom
     }
 
+    const wholeRatio = (200/width);
+    const zoomRatio = (1/zoom);
+    const selectedSize = wholeRatio*300*zoomRatio;
+
+    const wholeImageStyle = {
+      width: 200,
+      height: wholeRatio*height
+    }
+
+    const selectedArea = {
+      width: selectedSize,
+      height: selectedSize,
+      marginLeft: -wholeRatio*marginLeft*zoomRatio,
+      marginTop: -wholeRatio*marginTop*zoomRatio
+    }
+
     return (
       <View style={cropperStyles.cropperWrapper}>
         {image &&
-          <View>
+          <View style={cropperStyles.images}>
             <View style={cropperStyles.imageWrapper} {...this.panResponder.panHandlers} >
               <Image source={{uri: image}} style={[cropperStyles.image, imageStyle]}/>
+              <View style={!this.state.touched ? cropperStyles.info : {display: "none"}}>
+                <Text style={!this.state.touched ? cropperStyles.infoText : {display: "none"}}>Drag one finger to pan and two to zoom.</Text>
+              </View>
             </View>
             { /*
             <View style={cropperStyles.cropperOptionWrapper}>
@@ -204,6 +238,10 @@ class PhotosCropper extends Component {
             </View>
             */
             }
+            <View style={[cropperStyles.wholeImageWrapper, wholeImageStyle]}>
+              <Image source={{uri: image}} style={[cropperStyles.wholeImage, wholeImageStyle]}/>
+              <View style={[cropperStyles.selectedArea, selectedArea]}></View>
+            </View>
           </View>
         }
         <Button content="Select Photo" onPress={() => this.pickImage()}/>
