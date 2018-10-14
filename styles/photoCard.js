@@ -6,6 +6,9 @@ import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
 let {height, width} = Dimensions.get('window');
 let containerWidth = width - 36;
 let cardHeight = Math.floor((width-48)/3);
+const breakPoint = 400;
+const cardFontSize = width > breakPoint ? 15 : 10 ;
+const marginSize = width > breakPoint ? 10 : 3;
 
 
 const photoCardStyles = StyleSheet.create({
@@ -45,16 +48,17 @@ const photoCardStyles = StyleSheet.create({
     color: OFF_WHITE,
     opacity: 1,
     zIndex: 99999,
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: cardFontSize
   },
   profileGroup: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
-    marginTop: 10
+    marginBottom: marginSize,
+    marginTop: marginSize
   },
   profileText: {
-    fontSize: 15,
+    fontSize: cardFontSize,
     color: OFF_WHITE,
     opacity: 1,
     zIndex: 99999

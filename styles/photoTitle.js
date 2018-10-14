@@ -31,6 +31,11 @@ const photoTitleStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  imageHolder: {
+    width: "100%",
+    height: 300,
+    overflow: "hidden"
+  },
   image: {
     minWidth: "100%",
     minHeight: "100%"

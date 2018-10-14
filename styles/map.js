@@ -7,25 +7,30 @@ const mapHeight = height - 150;
 const mapWidth = width + 40;
 
 const markerAndroid = {
-
+  zIndex: 99999999999999999999999
 }
+
 const markerIos = {
   position: "absolute",
   top: -20,
   left: 0
 }
+
+
 const markerPlatform = Platform.OS === 'ios' ? markerIos : markerAndroid;
+const markerSize = Platform.OS === 'ios' ? 50 : 25;
 
 const styles = StyleSheet.create({
   map: {
     width: mapWidth,
     height: mapHeight,
     margin: -20,
+    padding: -20,
     flex: 1
   },
   marker: {
-    width: 50,
-    height: 50,
+    width: markerSize,
+    height: markerSize,
     position: "relative"
   },
   callout: {

@@ -22,10 +22,12 @@ class LocationsShow extends Component {
     return(
       <View>
         <View style={photoTitleStyles.container}>
-          <Image
-            style={photoTitleStyles.image}
-            source={{uri: photos[0] ? photos[0].img_url : 'https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg'}}
-          />
+          <View style={photoTitleStyles.imageHolder}>
+            <Image
+              style={photoTitleStyles.image}
+              source={{uri: photos[0] ? photos[0].img_url : 'https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg'}}
+            />
+          </View>
           <View style={photoTitleStyles.mask}>
             <Text style={photoTitleStyles.title}>{title}</Text>
           </View>

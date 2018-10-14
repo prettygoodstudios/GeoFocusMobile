@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import * as actions from "../../actions";
 import history from "../../history";
 import mapStyles from "../../styles/map";
-import baseStyles from "../../styles/";
+import baseStyles, {PRIMARY_COLOR} from "../../styles/";
 
 import Button from "../widgets/button";
 
@@ -44,8 +44,9 @@ class LocationsIndex extends Component {
         <MapView style={[mapStyles.map]}>
           {this.state.loaded && this.props.locations.map((l, i) => {
             return(
-              <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS != "ios" ? () => console.log("View Me!")  : () => console.log("Callout Click")}>
+              <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
                 <Icon name="place" iconStyle={mapStyles.markerIcon}/>
+                {Platform.OS !== "ios" && <View style={{width: 24, height: 24, backgroundColor: PRIMARY_COLOR, borderRadius: 12}}></View>}
                 <Callout style={mapStyles.callout} >
                   <Text style={[baseStyles.h1]}>{l.title}</Text>
                   <Text style={{width: 300}}>{l.full_address}</Text>

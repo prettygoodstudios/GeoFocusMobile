@@ -227,17 +227,6 @@ class PhotosCropper extends Component {
                 <Text style={!this.state.touched ? cropperStyles.infoText : {display: "none"}}>Drag one finger to pan and two to zoom.</Text>
               </View>
             </View>
-            { /*
-            <View style={cropperStyles.cropperOptionWrapper}>
-              <CropperOption content="^" onPress={() => this.panY(-10)}/>
-              <CropperOption content="\/" onPress={() => this.panY(10)}/>
-              <CropperOption content="<" onPress={() => this.panX(-10)}/>
-              <CropperOption content=">" onPress={() => this.panX(10)}/>
-              <CropperOption content="+" onPress={() => this.zoom(0.1)}/>
-              <CropperOption content="-" onPress={() => this.zoom(-0.1)}/>
-            </View>
-            */
-            }
             <View style={[cropperStyles.wholeImageWrapper, wholeImageStyle]}>
               <Image source={{uri: image}} style={[cropperStyles.wholeImage, wholeImageStyle]}/>
               <View style={[cropperStyles.selectedArea, selectedArea]}></View>
