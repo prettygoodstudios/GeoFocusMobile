@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, Platform} from "react-native";
+import {View, Text, Platform, Image} from "react-native";
 import {Icon} from "react-native-elements";
 import {MapView} from "expo";
 const {Marker, Callout} = MapView;
@@ -46,7 +46,7 @@ class LocationsIndex extends Component {
             return(
               <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
                 <Icon name="place" iconStyle={mapStyles.markerIcon}/>
-                {Platform.OS !== "ios" && <View style={{width: 24, height: 24, backgroundColor: PRIMARY_COLOR, borderRadius: 12}}></View>}
+                {Platform.OS !== "ios" && <View style={{width: 70, height: 70, borderRadius: 35, backgroundColor: PRIMARY_COLOR}}><Image source={require('../../assets/images/pinicon.png')} style={{width: 70, height: 70}}/></View>}
                 <Callout style={mapStyles.callout} >
                   <Text style={[baseStyles.h1]}>{l.title}</Text>
                   <Text style={{width: 300}}>{l.full_address}</Text>

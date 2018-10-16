@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {MAIN_FONT} from "./index";
 
 const styles = StyleSheet.create({
   photo: {
@@ -14,11 +15,13 @@ const styles = StyleSheet.create({
   profileText: {
     marginLeft: 4,
     fontSize: 35,
-    fontWeight: "600"
+    fontWeight: "600",
+    fontFamily: MAIN_FONT
   },
   caption: {
     fontSize: 20,
-    marginTop: 10
+    marginTop: 10,
+    fontFamily: MAIN_FONT
   },
   location: {
     flexDirection: "row",
@@ -29,7 +32,8 @@ const styles = StyleSheet.create({
   },
   locationText: {
     fontSize: 35,
-    fontWeight: "600"
+    fontWeight: "600",
+    fontFamily: MAIN_FONT
   },
   textWrapper: {
     flexDirection: "row",

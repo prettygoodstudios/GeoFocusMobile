@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {PRIMARY_COLOR, SECONDARY_COLOR, OFF_WHITE} from "./variables";
+import {PRIMARY_COLOR, SECONDARY_COLOR, OFF_WHITE, MAIN_FONT} from "./variables";
 
 const errorStyles = StyleSheet.create({
   errorBubble: {
@@ -12,7 +12,8 @@ const errorStyles = StyleSheet.create({
   errorText: {
     color: OFF_WHITE,
     fontSize: 20,
-    fontWeight: "600"
+    fontWeight: "600",
+    fontFamily: MAIN_FONT
   }
 });
 

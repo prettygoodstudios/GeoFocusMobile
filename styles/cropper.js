@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from "react-native";
 
-import {PRIMARY_COLOR, OFF_WHITE} from "./index";
+import {PRIMARY_COLOR, OFF_WHITE, MAIN_FONT} from "./index";
 
 const {height, width} = Dimensions.get('window');
 
@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
   },
   cropperOptionText: {
     color: OFF_WHITE,
-    fontSize: 40
+    fontSize: 40,
+    fontFamily: MAIN_FONT
   },
   cropperOptionWrapper: {
     display: "flex",
@@ -47,7 +48,8 @@ const styles = StyleSheet.create({
   infoText: {
     color: OFF_WHITE,
     fontSize: 30,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: MAIN_FONT
   },
   cropperWrapper: {
     display: "flex",

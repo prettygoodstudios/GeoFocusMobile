@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {OFF_WHITE} from "./index";
+import {OFF_WHITE, MAIN_FONT} from "./index";
 
 
 const reviewStyles = StyleSheet.create({
@@ -8,7 +8,8 @@ const reviewStyles = StyleSheet.create({
     alignItems: "center"
   },
   profileText: {
-    fontSize: 30
+    fontSize: 30,
+    fontFamily: MAIN_FONT
   },
   headerWrapper: {
     flexDirection: "row",
@@ -19,7 +20,8 @@ const reviewStyles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "700",
     marginLeft: 50,
-    textAlign: "right"
+    textAlign: "right",
+     fontFamily: MAIN_FONT
   },
   review: {
     backgroundColor: OFF_WHITE,

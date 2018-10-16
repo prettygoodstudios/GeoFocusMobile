@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions} from "react-native";
 import hexRgb from "hex-rgb";
 
-import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
+import {OFF_WHITE, PRIMARY_COLOR, MAIN_FONT} from "./variables";
 
 let {height, width} = Dimensions.get('window');
 let containerWidth = width - 36;
@@ -49,7 +49,8 @@ const photoCardStyles = StyleSheet.create({
     opacity: 1,
     zIndex: 99999,
     textAlign: "center",
-    fontSize: cardFontSize
+    fontSize: cardFontSize,
+    fontFamily: MAIN_FONT
   },
   profileGroup: {
     flexDirection: "row",
@@ -61,7 +62,8 @@ const photoCardStyles = StyleSheet.create({
     fontSize: cardFontSize,
     color: OFF_WHITE,
     opacity: 1,
-    zIndex: 99999
+    zIndex: 99999,
+    fontFamily: MAIN_FONT
   },
   viewImage: {
     backgroundColor: PRIMARY_COLOR,

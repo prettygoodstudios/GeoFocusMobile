@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {OFF_WHITE} from "./variables";
+import {OFF_WHITE, MAIN_FONT} from "./variables";
 
 const photoTitleStyles = StyleSheet.create({
   container: {
@@ -17,7 +17,8 @@ const photoTitleStyles = StyleSheet.create({
   title: {
     color: OFF_WHITE,
     fontSize: 50,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: MAIN_FONT
   },
   mask: {
     position: "absolute",

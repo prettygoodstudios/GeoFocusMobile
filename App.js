@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Font} from 'expo';
 import {Route, Switch, Router} from 'react-router-native';
 import {routerMiddleware} from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
@@ -76,10 +77,30 @@ const Layout = connect(mapStateToProps, actions)(MyLayout);
 
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      fontsLoaded: false
+    }
+  }
+
+  async componentDidMount(){
+    await Font.loadAsync({
+      'avenir-medium': require('./assets/fonts/avenirmedium.ttf'),
+    });
+    await Font.loadAsync({
+      'avenir-light': require('./assets/fonts/avenirlight.ttf'),
+    });
+    this.setState({
+      fontsLoaded: true
+    })
+  }
+
   render() {
     return (
       <Provider store={store}>
-        <Layout />
+        { this.state.fontsLoaded ?  <Layout /> : <View></View>}
       </Provider>
     );
   }

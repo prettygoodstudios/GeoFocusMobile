@@ -5,11 +5,13 @@ import {MAIN_FONT, SECONDARY_FONT, PRIMARY_COLOR, SECONDARY_COLOR, OFF_WHITE} fr
 const styles = StyleSheet.create({
   h1: {
     fontSize: 40,
-    fontWeight: "700"
+    fontWeight: "700",
+    fontFamily: MAIN_FONT
   },
   p: {
     fontSize: 20,
-    fontWeight: "400"
+    fontWeight: "400",
+    fontFamily: MAIN_FONT
   },
   body: {
     flex: 1
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: OFF_WHITE,
     fontSize: 30,
+    fontFamily: MAIN_FONT
   }
 });
 

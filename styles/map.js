@@ -18,14 +18,16 @@ const markerIos = {
 
 
 const markerPlatform = Platform.OS === 'ios' ? markerIos : markerAndroid;
-const markerSize = Platform.OS === 'ios' ? 50 : 25;
+const markerSize = Platform.OS === 'ios' ? 50 : 70;
 
 const styles = StyleSheet.create({
   map: {
     width: mapWidth,
     height: mapHeight,
     margin: -20,
-    padding: -20,
+    padding: 0,
+    top: 0,
+    left: 0,
     flex: 1
   },
   marker: {

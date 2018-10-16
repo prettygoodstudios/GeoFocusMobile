@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-import {OFF_WHITE, PRIMARY_COLOR} from "./variables";
+import {OFF_WHITE, PRIMARY_COLOR, MAIN_FONT, SECONDARY_FONT} from "./variables";
 
 const titleText = {
   color: OFF_WHITE,
@@ -16,15 +16,23 @@ const titleBarStyles = StyleSheet.create({
   },
   bolded: {
     fontWeight: "700",
-    ...titleText
+    ...titleText,
+    fontFamily: MAIN_FONT
   },
   lighter: {
     fontWeight: "200",
-    ...titleText
+    ...titleText,
+    fontFamily: SECONDARY_FONT
   },
   textWrapper: {
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  logo: {
+    width: 44,
+    height: 50,
+    marginRight: 5
   }
 });
 

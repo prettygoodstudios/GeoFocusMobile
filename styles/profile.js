@@ -17,11 +17,11 @@ const profileStyles = StyleSheet.create({
     zIndex: 9999999999
   },
   headerTitle: {
-    fontSize: 40,
+    fontSize: 25,
     color: OFF_WHITE
   },
   headerEmail: {
-    fontSize: 20,
+    fontSize: 12,
     color: OFF_WHITE
   },
   headerImage: {
