@@ -24,16 +24,14 @@ const styles = StyleSheet.create({
   map: {
     width: mapWidth,
     height: mapHeight,
+    zIndex: 9999999,
     margin: -20,
     padding: 0,
-    top: 0,
     left: 0,
     flex: 1
   },
   marker: {
-    width: markerSize,
-    height: markerSize,
-    position: "relative"
+
   },
   callout: {
     width: 300,

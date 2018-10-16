@@ -30,7 +30,7 @@ class PhotosShow extends Component {
         <View style={photoStyles.textWrapper}>
           <TouchableOpacity onPress={() => this.goToUser()}>
             <View style={photoStyles.profile}>
-              <ProfileImage url={profile_img.url} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} size={40}/>
+              <ProfileImage url={profile_img.url} zoom={user_zoom} width={user_width} height={user_height} offsetX={user_offsetX} offsetY={user_offsetY} size={20}/>
               <Text style={photoStyles.profileText}>{display}</Text>
             </View>
           </TouchableOpacity>
@@ -42,6 +42,7 @@ class PhotosShow extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        <View style={{height: 100}}></View>
       </View>
     );
   }

@@ -44,9 +44,7 @@ class LocationsIndex extends Component {
         <MapView style={[mapStyles.map]}>
           {this.state.loaded && this.props.locations.map((l, i) => {
             return(
-              <Marker title={l.city} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
-                <Icon name="place" iconStyle={mapStyles.markerIcon}/>
-                {Platform.OS !== "ios" && <View style={{width: 70, height: 70, borderRadius: 35, backgroundColor: PRIMARY_COLOR}}><Image source={require('../../assets/images/pinicon.png')} style={{width: 70, height: 70}}/></View>}
+              <Marker title={l.city} image={require('../../assets/images/pinicon.png')} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
                 <Callout style={mapStyles.callout} >
                   <Text style={[baseStyles.h1]}>{l.title}</Text>
                   <Text style={{width: 300}}>{l.full_address}</Text>

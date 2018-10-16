@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   },
   profileText: {
     marginLeft: 4,
-    fontSize: 35,
+    fontSize: 20,
     fontWeight: "600",
     fontFamily: MAIN_FONT
   },
   caption: {
     fontSize: 20,
-    marginTop: 10,
+    marginTop: 2,
     fontFamily: MAIN_FONT
   },
   location: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   locationText: {
-    fontSize: 35,
+    fontSize: 20,
     fontWeight: "600",
     fontFamily: MAIN_FONT
   },

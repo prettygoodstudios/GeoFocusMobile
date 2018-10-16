@@ -50,6 +50,7 @@ const photoCardStyles = StyleSheet.create({
     zIndex: 99999,
     textAlign: "center",
     fontSize: cardFontSize,
+    maxHeight: 15,
     fontFamily: MAIN_FONT
   },
   profileGroup: {
@@ -63,7 +64,10 @@ const photoCardStyles = StyleSheet.create({
     color: OFF_WHITE,
     opacity: 1,
     zIndex: 99999,
-    fontFamily: MAIN_FONT
+    fontFamily: MAIN_FONT,
+    maxWidth: cardHeight - 40,
+    maxHeight: 15,
+    overflow: "hidden"
   },
   viewImage: {
     backgroundColor: PRIMARY_COLOR,

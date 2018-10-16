@@ -10,6 +10,7 @@ const UsersHeader = (props) => {
 
 
 
+
   return(
     <View style={profileStyles.header}>
       <ProfileImage url={profileImg} size={100} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY} style={{zIndex: 9999, marginLeft: 10, marginRight: 10}}/>

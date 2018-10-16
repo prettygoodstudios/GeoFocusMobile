@@ -69,6 +69,7 @@ class Profile extends Component {
         user_offsetY: offsetY
       }
     }) : [];
+    console.log(mapedPhotos);
 
     return(
 
@@ -78,7 +79,7 @@ class Profile extends Component {
         }
         <Button content="Log Out" onPress={() => this.logOut()} />
         <Error error={error}/>
-        <PhotoGrid photos={mapedPhotos} />
+        { !this.state.loading && <PhotoGrid photos={mapedPhotos} /> }
         <View style={{width: "100%", height: 50}}></View>
       </View>
     );

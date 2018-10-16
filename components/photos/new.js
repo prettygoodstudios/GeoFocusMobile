@@ -93,7 +93,7 @@ class PhotosNew extends Component {
       <View>
         <Text style={baseStyles.h1}>Upload a Photo</Text>
         <FormGroup placeholder="Caption" label="Caption" value={caption} onChangeText={this.onChangeText} />
-        <PhotosCropper image={image.uri} width={image.width} height={image.height} updateCropData={this.updateCropData} setImage={this.setImage}/>}
+        <PhotosCropper image={image.uri} width={image.width} height={image.height} updateCropData={this.updateCropData} setImage={this.setImage}/>
         <Error error={this.state.error} />
         <Button content="Upload" onPress={() => this.submit()}/>
         <View style={{height: 50}}></View>
