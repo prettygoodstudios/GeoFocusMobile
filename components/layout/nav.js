@@ -3,11 +3,11 @@ import {View, Text, TouchableOpacity} from "react-native";
 import {Icon} from "react-native-elements";
 import {connect} from "react-redux";
 
+import * as actions from "../../actions";
 import history from "../../history";
 import navStyles from "../../styles/nav";
 
 const NavOption = (icon, route, key) => {
-  console.log("Icon:", icon);
   return(
     <TouchableOpacity onPress={() => history.push(route)} key={key}>
       <View style={navStyles.option}>
@@ -33,6 +33,8 @@ class Nav extends Component {
       ]
     }
   }
+
+
   render(){
     if(!this.props.authenticated){
       return(
@@ -56,4 +58,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, null)(Nav);
+export default connect(mapStateToProps, actions)(Nav);

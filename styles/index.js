@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   container: {
-    padding: 20,
     flexBasis: "80%"
   },
   button: {

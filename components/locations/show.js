@@ -16,6 +16,14 @@ import ReviewsNew from "../reviews/new";
 
 class LocationsShow extends Component {
 
+  componentDidMount(){
+    this.props.setPadding(0);
+  }
+
+  componentWillUnmount(){
+    this.props.setPadding(20);
+  }
+
   render(){
     const {photos, location} = this.props;
     const {city, title, id} = location;
@@ -32,17 +40,19 @@ class LocationsShow extends Component {
             <Text style={photoTitleStyles.title}>{title}</Text>
           </View>
         </View>
-        <Text style={[baseStyles.p, { marginTop: 10}]}>{fullAddress(location)}</Text>
-        <ShowIfMine>
-          <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
-        </ShowIfMine>
-        <Button content="Add Photo" onPress={() => history.push(`/photos/new/upload`)}/>
-        <PhotoGrid photos={photos} />
-        <View style={{height: 20}}></View>
-        <ReviewsNew />
-        <ReviewStream />
-        <Button content="Go Home" onPress={() => history.push("/locations")}/>
-        <View style={{height: 20}}></View>
+        <View style={{padding: 20}}>
+          <Text style={[baseStyles.p, { marginTop: 10}]}>{fullAddress(location)}</Text>
+          <ShowIfMine>
+            <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
+          </ShowIfMine>
+          <Button content="Add Photo" onPress={() => history.push(`/photos/new/upload`)}/>
+          <PhotoGrid photos={photos} />
+          <View style={{height: 20}}></View>
+          <ReviewsNew />
+          <ReviewStream />
+          <Button content="Go Home" onPress={() => history.push("/locations")}/>
+          <View style={{height: 20}}></View>
+        </View>
       </View>
     );
   }

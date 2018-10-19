@@ -4,5 +4,6 @@ import {setLoading} from "./loading";
 import {getUser} from "./users";
 import {getPhoto, uploadPhoto} from "./photos";
 import {setScroll} from "./scrolling";
+import {setPadding} from "./padding";
 
-export {logIn, authenticate, getLocations, getLocation, setLoading, getUser, getPhoto, clearUser, createLocation, updateLocation, createReview, editReview, uploadPhoto, createUser, setScroll};
+export {logIn, authenticate, getLocations, getLocation, setLoading, getUser, getPhoto, clearUser, createLocation, updateLocation, createReview, editReview, uploadPhoto, createUser, setScroll, setPadding};

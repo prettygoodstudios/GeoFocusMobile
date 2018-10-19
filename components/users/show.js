@@ -9,6 +9,15 @@ import PhotoGrid from "../photos/grid";
 import UsersHeader from "./header";
 
 class UsersShow extends Component {
+
+  componentDidMount(){
+    this.props.setPadding(0);
+  }
+
+  componentWillUnmount(){
+    this.props.setPadding(20);
+  }
+
   render(){
     const {profile_img, email, display, photos, id, zoom, height, width, offsetX, offsetY} = this.props;
 
@@ -31,8 +40,10 @@ class UsersShow extends Component {
     return(
       <View>
         <UsersHeader profileImg={profile_img.url} display={display} email={email} backgroundPhoto={photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
-        <PhotoGrid photos={mapedPhotos} />
-        <View style={{width: "100%", height: 50}}></View>
+        <View style={{padding: 20}}>
+          <PhotoGrid photos={mapedPhotos} />
+          <View style={{width: "100%", height: 50}}></View>
+        </View>
       </View>
     );
   }

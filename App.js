@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView} from 'react-native';
 import {Font} from 'expo';
 import {Route, Switch, Router} from 'react-router-native';
 import {routerMiddleware} from 'react-router-redux';
@@ -37,26 +37,29 @@ import Spinner from "./components/widgets/spinner";
 
 class MyLayout extends Component{
   render(){
+    const {scroll, padding} = this.props;
     return(
       <View style={styles.body}>
         <TitleBar/>
         <Viewport.Tracker>
-          <ScrollView style={styles.container} scrollEnabled={this.props.scroll}>
-            <Router history={history}>
-              <Switch>
-                <Route exact path="/" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/locations" component={LocationsIndex} />
-                <Route exact path="/locations/:id" component={LocationsShow} />
-                <Route path="/locations/new/create" component={LocationsNew} />
-                <Route path="/locations/:id/update" component={LocationsEdit} />
-                <Route exact path="/users/profile" component={Login} />
-                <Route path="/users/show/:id" component={UsersShow} />
-                <Route path="/users/profile/show" component={Profile} />
-                <Route exact path="/photos/:id" component={PhotosShow} />
-                <Route path="/photos/new/upload" component={PhotosNew} />
-              </Switch>
-            </Router>
+          <ScrollView style={[styles.container, {padding}]} scrollEnabled={scroll}>
+            <KeyboardAvoidingView behavior="padding">
+              <Router history={history}>
+                <Switch>
+                  <Route exact path="/" component={Login} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/locations" component={LocationsIndex} />
+                  <Route exact path="/locations/:id" component={LocationsShow} />
+                  <Route path="/locations/new/create" component={LocationsNew} />
+                  <Route path="/locations/:id/update" component={LocationsEdit} />
+                  <Route exact path="/users/profile" component={Login} />
+                  <Route path="/users/show/:id" component={UsersShow} />
+                  <Route path="/users/profile/show" component={Profile} />
+                  <Route exact path="/photos/:id" component={PhotosShow} />
+                  <Route path="/photos/new/upload" component={PhotosNew} />
+                </Switch>
+              </Router>
+            </KeyboardAvoidingView>
           </ScrollView>
         </Viewport.Tracker>
         <Nav />
@@ -68,8 +71,10 @@ class MyLayout extends Component{
 
 function mapStateToProps(state){
   const {scroll} = state.scrolling;
+  const {padding} = state.padding;
   return{
-    scroll
+    scroll,
+    padding
   }
 }
 

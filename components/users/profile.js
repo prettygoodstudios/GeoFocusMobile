@@ -26,6 +26,11 @@ class Profile extends Component {
   componentDidMount(){
     this.props.setLoading(true);
     this.props.getUser(this.props.id, this.success, this.error);
+    this.props.setPadding(0);
+  }
+
+  componentWillUnmount(){
+    this.props.setPadding(20);
   }
 
   success = () => {
@@ -69,7 +74,6 @@ class Profile extends Component {
         user_offsetY: offsetY
       }
     }) : [];
-    console.log(mapedPhotos);
 
     return(
 
@@ -77,10 +81,12 @@ class Profile extends Component {
         { !this.state.loading &&
           <UsersHeader profileImg={profile_img ? profile_img.url : ""} display={display} email={email} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         }
-        <Button content="Log Out" onPress={() => this.logOut()} />
-        <Error error={error}/>
-        { !this.state.loading && <PhotoGrid photos={mapedPhotos} /> }
-        <View style={{width: "100%", height: 50}}></View>
+        <View style={{padding: 20}}>
+          <Button content="Log Out" onPress={() => this.logOut()} />
+          <Error error={error}/>
+          { !this.state.loading && <PhotoGrid photos={mapedPhotos} /> }
+          <View style={{width: "100%", height: 50}}></View>
+        </View>
       </View>
     );
   }

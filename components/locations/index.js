@@ -25,6 +25,11 @@ class LocationsIndex extends Component {
   componentDidMount(){
     this.props.setLoading(true);
     this.props.getLocations(this.success, this.error);
+    this.props.setPadding(0);
+  }
+
+  componentWillUnmount(){
+    this.props.setPadding(20);
   }
 
   success = () => {

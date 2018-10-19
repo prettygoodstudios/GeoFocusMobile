@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
   map: {
     width: mapWidth,
     height: mapHeight,
-    zIndex: 9999999,
-    margin: -20,
     padding: 0,
     left: 0,
     flex: 1

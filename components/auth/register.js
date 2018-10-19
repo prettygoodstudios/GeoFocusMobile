@@ -29,6 +29,7 @@ class Register extends Component {
   }
 
   componentDidMount(){
+    this.props.setPadding(20);
   }
 
   onChangeText = (l, t) => {
