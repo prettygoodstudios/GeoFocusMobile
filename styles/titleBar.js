@@ -11,8 +11,10 @@ const titleBarStyles = StyleSheet.create({
   titleBar: {
     backgroundColor: PRIMARY_COLOR,
     alignItems: "center",
-    justifyContent: "center",
-    flexBasis: 100
+    justifyContent: "flex-end",
+    flexBasis: 100,
+    flexDirection: "column",
+    paddingBottom: 5
   },
   bolded: {
     fontWeight: "700",
@@ -27,10 +29,11 @@ const titleBarStyles = StyleSheet.create({
   textWrapper: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0)"
   },
   logo: {
-    width: 44,
+    width: 45,
     height: 50,
     marginRight: 5
   }

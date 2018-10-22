@@ -26,6 +26,7 @@ class Login extends Component {
   componentDidMount(){
     this.props.setLoading(true);
     this.retrieveUser();
+    this.props.setPadding(20);
   }
 
   onChangeText = (l, t) => {

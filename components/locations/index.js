@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {View, Text, Platform, Image} from "react-native";
 import {Icon} from "react-native-elements";
-import {MapView} from "expo";
+import {MapView, Location, Permissions} from "expo";
 const {Marker, Callout} = MapView;
 
 import {connect} from "react-redux";
@@ -18,7 +18,11 @@ class LocationsIndex extends Component {
   constructor(){
     super();
     this.state = {
-      loaded: false
+      loaded: false,
+      location: {
+        longitude: -111.8910,
+        latitude: 40.7608
+      }
     }
   }
 
@@ -26,6 +30,7 @@ class LocationsIndex extends Component {
     this.props.setLoading(true);
     this.props.getLocations(this.success, this.error);
     this.props.setPadding(0);
+    this.getLocationAsync();
   }
 
   componentWillUnmount(){
@@ -43,11 +48,22 @@ class LocationsIndex extends Component {
     this.props.setLoading(false);
   }
 
+  getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      alert("The map will not automatically select your geographic area.");
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location: { latitude: location.coords.latitude,  longitude: location.coords.longitude }});
+  };
+
   render(){
+    const {loaded, location} = this.state;
     return(
       <View>
-        <MapView style={[mapStyles.map]}>
-          {this.state.loaded && this.props.locations.map((l, i) => {
+        <MapView style={[mapStyles.map]} region={{...location, latitudeDelta: 0.1322, longitudeDelta: 0.0821}}>
+          {loaded && this.props.locations.map((l, i) => {
             return(
               <Marker title={l.city} image={require('../../assets/images/pinicon.png')} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
                 <Callout style={mapStyles.callout} >

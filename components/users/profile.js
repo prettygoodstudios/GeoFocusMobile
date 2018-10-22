@@ -57,7 +57,7 @@ class Profile extends Component {
   }
 
   render(){
-    const {display, profile_img, email, user_id, photos, loading, zoom, height, width, offsetX, offsetY} = this.props;
+    const {display, profile_img, email, user_id, photos, loading, zoom, height, width, offsetX, offsetY, bio} = this.props;
     const {error} = this.state;
     const mapedPhotos = photos ? photos.map((p) => {
       return {
@@ -79,7 +79,7 @@ class Profile extends Component {
 
       <View>
         { !this.state.loading &&
-          <UsersHeader profileImg={profile_img ? profile_img.url : ""} display={display} email={email} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
+          <UsersHeader profileImg={profile_img ? profile_img.url : ""} display={display} email={email} bio={bio} backgroundPhoto={ photos[0] ? photos[0].img_url.url : "https://s3-us-west-2.amazonaws.com/staticgeofocus/john-westrock-638048-unsplash.jpg"} zoom={zoom} width={width} height={height} offsetX={offsetX} offsetY={offsetY}/>
         }
         <View style={{padding: 20}}>
           <Button content="Log Out" onPress={() => this.logOut()} />

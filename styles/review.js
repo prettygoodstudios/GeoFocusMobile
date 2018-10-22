@@ -8,7 +8,7 @@ const reviewStyles = StyleSheet.create({
     alignItems: "center"
   },
   profileText: {
-    fontSize: 30,
+    fontSize: 20,
     fontFamily: MAIN_FONT
   },
   headerWrapper: {

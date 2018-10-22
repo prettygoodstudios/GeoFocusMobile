@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView} from 'react-native';
-import {Font} from 'expo';
+import {Font, ScreenOrientation} from 'expo';
 import {Route, Switch, Router} from 'react-router-native';
 import {routerMiddleware} from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
@@ -97,9 +97,11 @@ class App extends Component {
     await Font.loadAsync({
       'avenir-light': require('./assets/fonts/avenirlight.ttf'),
     });
+    ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT_UP);
     this.setState({
       fontsLoaded: true
-    })
+    });
+
   }
 
   render() {
