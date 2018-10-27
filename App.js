@@ -20,6 +20,7 @@ import styles from "./styles";
 
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
+import EditRegistration from "./components/auth/editRegistration";
 import Profile from "./components/users/profile";
 import UsersShow from "./components/users/show";
 
@@ -48,6 +49,7 @@ class MyLayout extends Component{
                 <Switch>
                   <Route exact path="/" component={Login} />
                   <Route exact path="/register" component={Register} />
+                  <Route exact path="/users/edit" component={EditRegistration} />
                   <Route exact path="/locations" component={LocationsIndex} />
                   <Route exact path="/locations/:id" component={LocationsShow} />
                   <Route path="/locations/new/create" component={LocationsNew} />

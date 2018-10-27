@@ -94,7 +94,15 @@ class PhotosCropper extends Component {
   }
 
   componentDidMount(){
+    const {setCropData, zoom, profileImg, offsetX, offsetY} = this.props;
     this.getCameraRollPermissions();
+    if(setCropData){
+      this.setState({
+        zoom: parseFloat(zoom),
+        marginLeft: offsetX,
+        marginTop: offsetY
+      });
+    }
   }
 
   getCameraRollPermissions = async () => {
@@ -140,6 +148,11 @@ class PhotosCropper extends Component {
   zoom = (delta) => {
     const {marginLeft, marginTop, zoom} = this.state;
     const {width, height} = this.props;
+    console.log("My real start zoom height etc", {
+      width,
+      height,
+      zoom
+    });
     const realWidth = width*zoom;
     const realHeight = height*zoom;
     const positionX = marginLeft/realWidth;

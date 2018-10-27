@@ -1,4 +1,4 @@
-import {LOG_IN, AUTHENTICATE, CLEAR_USER, CREATE_USER} from "../actions/types";
+import {LOG_IN, AUTHENTICATE, CLEAR_USER, CREATE_USER, EDIT_USER} from "../actions/types";
 
 const INIT_STATE = {
   user: {
@@ -9,6 +9,7 @@ const INIT_STATE = {
 export default function(state = INIT_STATE, action){
   switch(action.type){
     case CREATE_USER:
+    case EDIT_USER:
     case AUTHENTICATE:
     case LOG_IN:
       return{

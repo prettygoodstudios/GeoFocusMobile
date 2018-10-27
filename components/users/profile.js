@@ -83,6 +83,7 @@ class Profile extends Component {
         }
         <View style={{padding: 20}}>
           <Button content="Log Out" onPress={() => this.logOut()} />
+          <Button content="Edit Profile" onPress={() => history.push("/users/edit")} />
           <Error error={error}/>
           { !this.state.loading && <PhotoGrid photos={mapedPhotos} /> }
           <View style={{width: "100%", height: 50}}></View>

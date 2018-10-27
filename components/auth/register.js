@@ -17,7 +17,7 @@ import RegistrationForm from "./registrationForm";
 class Register extends Component {
 
 
-  submit = (credentials) => {
+  submit = (credentials, error) => {
     const {email, password, displayName, passwordConfirmation, cropData, profile_img, bio} = credentials;
     if(profile_img.uri){
       const uri = profile_img.uri;
@@ -44,7 +44,7 @@ class Register extends Component {
       });
 
       this.props.setLoading(true);
-      this.props.createUser(params, this.success, this.error);
+      this.props.createUser(params, this.success, error);
     }else{
       this.error("You must upload a profile picture.");
     }
