@@ -33,6 +33,7 @@ import PhotosShow from "./components/photos/show";
 import PhotosNew from "./components/photos/new";
 
 import TitleBar from "./components/layout/titleBar";
+import SearchResults from "./components/layout/searchResults";
 import Nav from "./components/layout/nav";
 import Spinner from "./components/widgets/spinner";
 
@@ -64,6 +65,7 @@ class MyLayout extends Component{
             </KeyboardAvoidingView>
           </ScrollView>
         </Viewport.Tracker>
+        <SearchResults />
         <Nav />
         <Spinner />
       </View>

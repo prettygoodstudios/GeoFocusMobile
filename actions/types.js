@@ -15,3 +15,5 @@ export const CREATE_USER = 'CREATE_USER';
 export const SET_SCROLL = 'SET_SCROLL';
 export const SET_PADDING = 'SET_PADDING';
 export const EDIT_USER = 'EDIT_USER';
+export const SEARCH_RESULTS = 'SEARCH_RESULTS';
+export const SEARCH_ACTIVATED = 'SEARCH_ACTIVATED';

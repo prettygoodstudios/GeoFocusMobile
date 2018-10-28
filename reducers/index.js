@@ -7,6 +7,7 @@ import users from "./users";
 import photos from "./photos";
 import scrolling from "./scrolling";
 import padding from "./padding";
+import search from "./search";
 
 const rootReducer = combineReducers({
   auth,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   users,
   photos,
   scrolling,
-  padding
+  padding,
+  search
 });
 
 export default rootReducer;
