@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {ROOT_URL} from "../backend";
-import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW} from "./types";
+import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW, SET_MY_LOCATION} from "./types";
 import {parseNetworkErrors} from "../helpers/errors";
 
 export function getLocations(success, error){
@@ -68,6 +68,13 @@ export function updateLocation(params, success, error){
     }).catch((e) => {
       error(parseNetworkErrors(e));
     });
+  }
+}
+
+export function setMyLocation(latlong){
+  return{
+    type: SET_MY_LOCATION,
+    payload: latlong
   }
 }
 

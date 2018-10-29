@@ -36,15 +36,11 @@ class TitleBar extends Component {
   }
 
   toggleSearch = () => {
-    const {searching} = this.state;
-    this.props.setSearching(searching ? false : true);
-    if(searching){
+    const {activated} = this.props;
+    this.props.setSearching(activated ? false : true);
+    if(activated){
       this.props.setResults([]);
     }
-    this.setState({
-      searching: searching ? false : true,
-      results: []
-    });
   }
 
   updateSearch = (query) => {

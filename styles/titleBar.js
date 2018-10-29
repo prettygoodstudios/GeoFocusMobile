@@ -53,6 +53,7 @@ const titleBarStyles = StyleSheet.create({
     borderColor: "transparent",
     borderBottomWidth: 5,
     borderBottomColor: OFF_WHITE,
+    fontFamily: MAIN_FONT,
     color: OFF_WHITE,
     fontSize: 30,
     height: 50,
@@ -72,13 +73,21 @@ const titleBarStyles = StyleSheet.create({
   },
   resultsTitle: {
     color: PRIMARY_COLOR,
-    fontSize: 20
+    fontSize: 15,
+    fontFamily: MAIN_FONT,
+    fontWeight: "700"
   },
   resultsContainer: {
     position: "absolute",
     top: 100,
     left: 0,
     width: "100%"
+  },
+  resultsAddress: {
+    color: PRIMARY_COLOR,
+    fontSize: 10,
+    fontWeight: "200",
+    fontFamily: SECONDARY_FONT
   }
 });
 

@@ -1,12 +1,18 @@
-import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW} from "../actions/types";
+import {GET_LOCATIONS, GET_LOCATION, CREATE_LOCATION, UPDATE_LOCATION, CREATE_REVIEW, EDIT_REVIEW, SET_MY_LOCATION} from "../actions/types";
 
 const INIT_STATE = {
   locations: [],
-  location: {}
+  location: {},
+  myLocation: {}
 }
 
 export default function(state = INIT_STATE, action){
   switch(action.type){
+    case SET_MY_LOCATION:
+      return{
+        ...state,
+        myLocation: action.payload
+      }
     case GET_LOCATIONS:
       return{
         ...state,

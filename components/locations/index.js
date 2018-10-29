@@ -30,7 +30,13 @@ class LocationsIndex extends Component {
     this.props.setLoading(true);
     this.props.getLocations(this.success, this.error);
     this.props.setPadding(0);
-    this.getLocationAsync();
+    if(!this.props.myLocation.latitude){
+      this.getLocationAsync();
+    }else{
+      this.setState({
+        location: this.props.myLocation
+      });
+    }
   }
 
   componentWillUnmount(){
@@ -55,7 +61,9 @@ class LocationsIndex extends Component {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    this.setState({ location: { latitude: location.coords.latitude,  longitude: location.coords.longitude }});
+    const parsedLocation = { latitude: location.coords.latitude,  longitude: location.coords.longitude };
+    this.setState({ location: parsedLocation });
+    this.props.setMyLocation(parsedLocation);
   };
 
   render(){
@@ -85,12 +93,13 @@ class LocationsIndex extends Component {
 
 function mapStateToProps(state){
   const {user} = state.auth;
-  const {locations} = state.locations;
+  const {locations, myLocation} = state.locations;
   const {loading} = state.loading;
   return{
     user,
     locations,
-    loading
+    loading,
+    myLocation
   }
 }
 
