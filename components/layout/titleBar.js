@@ -47,11 +47,14 @@ class TitleBar extends Component {
     let newResults = this.props.locations.filter((l) => {
       let retVal = false;
       query.split(" ").forEach((w) => {
-        if(this.foundInLocation(l, w)){
+        if(this.foundInLocation(l, w.toLowerCase()) && w != ""){
           retVal = true;
         }
       });
       return retVal;
+    });
+    newResults = newResults.sort((a, b) =>  {
+      return this.locationPoints(a, query) > this.locationPoints(b, query) ? -1 : 1;
     });
     if(query == ""){
       newResults = [];
@@ -60,8 +63,88 @@ class TitleBar extends Component {
   }
 
   foundInLocation = (l, w) => {
-    const {title, city, state, country} = l;
-    return title.toLowerCase().indexOf(w) != -1 || city.toLowerCase().indexOf(w) != -1 || state.toLowerCase().indexOf(w) != -1 || country.toLowerCase().indexOf(w) != -1;
+    const {title, address, city, state, country} = l;
+    return title.toLowerCase().indexOf(w) != -1 || city.toLowerCase().indexOf(w) != -1 || state.toLowerCase().indexOf(w) != -1 || country.toLowerCase().indexOf(w) != -1 || address.toLowerCase().indexOf(w) != -1;
+  }
+
+  locationPoints = (l, q) => {
+    const {title, address, city, state, country} = l;
+    let points = this.aggregatePoints(l, q, [10, 9, 8, 7, 6], 0);
+    let t = false;
+    let a = false;
+    let s = false;
+    let c = false;
+    let ci = false;
+
+    q.split(" ").forEach((w) => {
+      if(w != ""){
+        points = this.aggregatePoints(l, w, [5, 4, 3, 2, 1], points);
+        if(title.toLowerCase().indexOf(w.toLowerCase()) != -1){
+          t = true;
+        }
+        if(address.toLowerCase().indexOf(w.toLowerCase()) != -1){
+          a = true;
+        }
+        if(city.toLowerCase().indexOf(w.toLowerCase()) != -1){
+          ci = true;
+        }
+        if(state.toLowerCase().indexOf(w.toLowerCase()) != -1){
+          s = true;
+        }
+        if(country.toLowerCase().indexOf(w.toLowerCase()) != -1){
+          c = true;
+        }
+      }
+    });
+
+    if(t && a){
+      points += 5;
+    }
+    if(t && a && ci){
+      points += 6;
+    }
+    if(t && a && ci && s){
+      points += 7;
+    }
+    if(t && a && ci && s && c){
+      points += 8;
+    }
+    if(t && ci){
+      points += 5;
+    }
+    if(t && s){
+      points += 5;
+    }
+    if(a && ci){
+      points += 5;
+    }
+    if(a && s){
+      points += 5;
+    }
+
+    return points;
+  }
+
+  aggregatePoints = (l, str, r, p) => {
+    const {title, address, city, state, country} = l;
+    let points = p;
+    const s  = str.toLowerCase();
+    if(title.toLowerCase().indexOf(s) != -1){
+      points += r[0];
+    }
+    if(address.toLowerCase().indexOf(s) != -1){
+      points += r[1];
+    }
+    if(city.toLowerCase().indexOf(s) != -1){
+      points += r[2];
+    }
+    if(state.toLowerCase().indexOf(s) != -1){
+      points += r[3];
+    }
+    if(country.toLowerCase().indexOf(s) != -1){
+      points += r[4];
+    }
+    return points;
   }
 
   render(){

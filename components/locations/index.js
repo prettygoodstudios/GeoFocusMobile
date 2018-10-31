@@ -57,7 +57,8 @@ class LocationsIndex extends Component {
   getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
-      alert("The map will not automatically select your geographic area.");
+      alert("The map will not automatically select your geographic area and distance estimates will be based off of your distance from Salt Lake City, Utah.");
+      this.props.setMyLocation(this.state.location);
     }
 
     let location = await Location.getCurrentPositionAsync({});
