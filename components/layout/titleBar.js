@@ -148,10 +148,14 @@ class TitleBar extends Component {
   }
 
   render(){
-    const {activated} = this.props;
+    const {activated, user} = this.props;
     return(
       <View style={titleBarStyles.titleBar}>
-        { !activated ?
+        { activated && user.authenticated ?
+          <View style={titleBarStyles.searchBarWrapper}>
+            <TextInput style={titleBarStyles.searchBarInput} placeholder="Search..." underlineColorAndroid="transparent" autoCapitalize="none" onChangeText={(t) => this.updateSearch(t)}/>
+          </View>
+          :
           <View style={titleBarStyles.titleSection}>
             <View style={titleBarStyles.textWrapper}>
               <Image source={require('../../assets/images/geologo.png')} style={titleBarStyles.logo}/>
@@ -159,12 +163,8 @@ class TitleBar extends Component {
               <Text style={titleBarStyles.lighter}>Focus</Text>
             </View>
           </View>
-          :
-          <View style={titleBarStyles.searchBarWrapper}>
-            <TextInput style={titleBarStyles.searchBarInput} placeholder="Search..." underlineColorAndroid="transparent" autoCapitalize="none" onChangeText={(t) => this.updateSearch(t)}/>
-          </View>
         }
-        <SearchButton toggle={this.toggleSearch}/>
+        { user.authenticated  && <SearchButton toggle={this.toggleSearch}/>}
       </View>
     );
   }
@@ -174,9 +174,11 @@ class TitleBar extends Component {
 function mapStateToProps(state) {
   const {locations} = state.locations;
   const {activated} = state.search;
+  const {user} = state.auth;
   return{
     locations,
-    activated
+    activated,
+    user
   }
 }
 
