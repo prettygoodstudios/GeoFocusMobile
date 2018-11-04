@@ -48,6 +48,8 @@ class Profile extends Component {
 
   logOut = () => {
     this.clearData();
+    this.props.setResults([]);
+    this.props.setSearching(false);
     this.props.clearUser();
     history.push("/");
   }
