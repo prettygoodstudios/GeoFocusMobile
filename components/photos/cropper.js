@@ -205,7 +205,7 @@ class PhotosCropper extends Component {
   }
 
   render(){
-    const {image, width, height} = this.props;
+    const {image, width, height, isProfile} = this.props;
     const {marginLeft, marginTop, zoom} = this.state;
     const imageStyle = {
       marginLeft,
@@ -236,13 +236,14 @@ class PhotosCropper extends Component {
           <View style={cropperStyles.images}>
             <View style={cropperStyles.imageWrapper} {...this.panResponder.panHandlers} >
               <Image source={{uri: image}} style={[cropperStyles.image, imageStyle]}/>
+              {isProfile && <View style={cropperStyles.profileCutOut}></View>}
               <View style={!this.state.touched ? cropperStyles.info : {display: "none"}}>
                 <Text style={!this.state.touched ? cropperStyles.infoText : {display: "none"}}>Drag one finger to pan and two to zoom.</Text>
               </View>
             </View>
             <View style={[cropperStyles.wholeImageWrapper, wholeImageStyle]}>
               <Image source={{uri: image}} style={[cropperStyles.wholeImage, wholeImageStyle]}/>
-              <View style={[cropperStyles.selectedArea, selectedArea]}></View>
+              <View style={[cropperStyles.selectedArea, selectedArea, isProfile ? {borderRadius: selectedSize* 0.5} : {}]}></View>
             </View>
           </View>
         }

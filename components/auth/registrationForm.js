@@ -92,12 +92,12 @@ class RegistrationForm extends Component {
         <FormGroup placeholder="Bio" label="Bio" value={bio} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Email" label="Email" value={email} onChangeText={this.onChangeText} />
         <FormGroup placeholder={create ? "Password" : "Current Password"} label={create ? "Password" : "Current Password"} value={create ? password : currentPassword} secure={true} onChangeText={this.onChangeText} />
-        { !create && <Text style={baseStyles.p}>(Leave black to keep your current password. If you would like to change your password enter your new desired password.)</Text>}
+        { !create && <Text style={baseStyles.p}>(Leave blank to keep your current password. If you would like to change your password enter your new desired password.)</Text>}
         <FormGroup placeholder={create ? "Password Confirmation" : "Password"} label={create ? "Password Confirmation" : "Password"} value={create ? passwordConfirmation : password} secure={true} onChangeText={this.onChangeText} />
         { create  ?
-          <PhotosCropper image={profile_img.uri} width={profile_img.width} height={profile_img.height} updateCropData={this.updateCropData} setImage={this.setImage}/>
+          <PhotosCropper image={profile_img.uri} width={profile_img.width} height={profile_img.height} updateCropData={this.updateCropData} setImage={this.setImage} isProfile={true}/>
           :
-          <PhotosCropper image={profile_img.uri} width={profile_img.width} height={profile_img.height} updateCropData={this.updateCropData} setImage={this.setImage} setCropData={true} profileImg={this.props.profile_img} zoom={zoom} offsetX={offsetX} offsetY={offsetY}/>
+          <PhotosCropper image={profile_img.uri} width={profile_img.width} height={profile_img.height} updateCropData={this.updateCropData} setImage={this.setImage} setCropData={true} profileImg={this.props.profile_img} zoom={zoom} offsetX={offsetX} offsetY={offsetY} isProfile={true}/>
         }
         <Error error={error} />
         <Button onPress={() => submit(this.state, this.error)} content={create ? "Register" : "Update"} />

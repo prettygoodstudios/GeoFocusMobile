@@ -18,3 +18,4 @@ export const EDIT_USER = 'EDIT_USER';
 export const SEARCH_RESULTS = 'SEARCH_RESULTS';
 export const SEARCH_ACTIVATED = 'SEARCH_ACTIVATED';
 export const SET_MY_LOCATION = 'SET_MY_LOCATION';
+export const SET_SCROLL_Y = 'SET_SCROLL_Y';

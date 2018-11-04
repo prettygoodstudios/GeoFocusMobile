@@ -45,6 +45,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20
   },
+  profileCutOut: {
+    top: -100,
+    left: -100,
+    width: 500,
+    height: 500,
+    backgroundColor: "transparent",
+    position: "absolute",
+    borderColor: "rgba(0,0,0,0.8)",
+    borderRadius: 250,
+    borderWidth: 100,
+  },
   infoText: {
     color: OFF_WHITE,
     fontSize: 30,
