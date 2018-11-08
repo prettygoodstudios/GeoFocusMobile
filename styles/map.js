@@ -1,6 +1,6 @@
 import {StyleSheet, Platform, Dimensions} from "react-native";
 
-import {PRIMARY_COLOR} from "./variables";
+import {PRIMARY_COLOR, OFF_WHITE} from "./variables";
 
 const {height, width} = Dimensions.get('window');
 const mapHeight = height - 150;
@@ -45,6 +45,14 @@ const styles = StyleSheet.create({
     top: 0,
     right: 20,
     width: 300
+  },
+  notVerifiedBubble: {
+    backgroundColor: OFF_WHITE,
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 20,
+    borderWidth: 4,
+    borderColor: PRIMARY_COLOR
   }
 });
 

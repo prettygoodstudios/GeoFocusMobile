@@ -28,7 +28,13 @@ class ReviewsNew extends Component {
       <View>
         {averageScore != -5 && <Text style={baseStyles.h1}>Average Review: {averageScore}</Text>}
         {canPost &&
-          <ReviewsForm submit={this.props.createReview} title="Leave a Review"/>
+          <View>
+            { user.verified ?
+              <ReviewsForm submit={this.props.createReview} title="Leave a Review"/>
+              :
+              <Text style={[baseStyles.p, {marginBottom: 10}]}>You must verify your email in order to leave a review.</Text>
+            }
+          </View>
         }
       </View>
     );

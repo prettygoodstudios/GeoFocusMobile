@@ -25,7 +25,7 @@ class LocationsShow extends Component {
   }
 
   render(){
-    const {photos, location} = this.props;
+    const {photos, location, user} = this.props;
     const {city, title, id} = location;
     return(
       <View>
@@ -45,7 +45,11 @@ class LocationsShow extends Component {
           <ShowIfMine>
             <Button content="Edit Location" onPress={() => history.push(`/locations/${id}/update`)}/>
           </ShowIfMine>
-          <Button content="Add Photo" onPress={() => history.push(`/photos/new/upload`)}/>
+          { user.verified ?
+            <Button content="Add Photo" onPress={() => history.push(`/photos/new/upload`)}/>
+            :
+            <Text style={[baseStyles.p, {marginBottom: 10}]}>You must verify your email in order to upload photos to this location.</Text>
+          }
           <PhotoGrid photos={photos} />
           <View style={{height: 20}}></View>
           <ReviewsNew />
@@ -60,8 +64,10 @@ class LocationsShow extends Component {
 
 function mapStateToProps(state){
   const {location} = state.locations;
+  const {user} = state.auth;
   return{
-    ...location
+    ...location,
+    user
   }
 }
 

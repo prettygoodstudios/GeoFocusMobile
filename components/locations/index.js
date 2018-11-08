@@ -69,6 +69,7 @@ class LocationsIndex extends Component {
 
   render(){
     const {loaded, location} = this.state;
+    const {user} = this.props;
     return(
       <View>
         <MapView style={[mapStyles.map]} region={{...location, latitudeDelta: 0.1322, longitudeDelta: 0.0821}}>
@@ -84,9 +85,16 @@ class LocationsIndex extends Component {
             )
           })}
         </MapView>
-        <View style={mapStyles.createButtonWrapper}>
-          <Button content="Create Location" onPress={() => history.push("/locations/new/create")} />
-        </View>
+          <View style={mapStyles.createButtonWrapper}>
+            { user.verified ?
+              <Button content="Create Location" onPress={() => history.push("/locations/new/create")} />
+              :
+              <View style={mapStyles.notVerifiedBubble}>
+                <Text>You must verify your email indorder to create a location. An email was already sent to the email you used during registration. Press the button below to refresh your verification status if you have recently verified your email.</Text>
+                <Button onPress={() => this.props.authenticate({email: user.email, token: user.authentication_token}, () => console.log("Success!"), () => console.log("Failure!"))} content="Refresh!"/>
+              </View>
+            }
+          </View>
       </View>
     );
   }
