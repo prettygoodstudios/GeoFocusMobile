@@ -86,9 +86,10 @@ class Login extends Component {
         <FormTitle title="Login" />
         <FormGroup placeholder="Email" label="Email" value={this.state.email} onChangeText={this.onChangeText} />
         <FormGroup placeholder="Password" label="Password" value={this.state.password} secure={true} onChangeText={this.onChangeText} />
+        <Error error={this.state.error} />
         <Button onPress={() => this.submit()} content="Sign In" />
         <Button onPress={() => history.push("/register")} content="Create Acount" />
-        <Error error={this.state.error} />
+        <View style={{height: 20}}></View>
       </View>
     );
   }
