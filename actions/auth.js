@@ -59,7 +59,7 @@ export function createUser(params, success, error){
       }else{
         const key = Object.keys(r.data.errors)[0];
         const message = Object.values(r.data.errors)[0];
-        error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`);
+        error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`.replace("_"," "));
       }
     }).catch((e) => {
       error(parseNetworkErrors(e));
@@ -88,7 +88,7 @@ export function editRegistration(params, success, error){
       }else{
         const key = Object.keys(r.data.errors)[0];
         const message = Object.values(r.data.errors)[0];
-        error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`);
+        error(`${key.charAt(0).toUpperCase()}${key.slice(1)} ${message}.`.replace("_"," "));
       }
     }).catch((e) => {
       error(parseNetworkErrors(e));

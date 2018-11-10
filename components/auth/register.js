@@ -46,7 +46,7 @@ class Register extends Component {
       this.props.setLoading(true);
       this.props.createUser(params, this.success, error);
     }else{
-      this.error("You must upload a profile picture.");
+      error("You must upload a profile picture.");
     }
   }
 
