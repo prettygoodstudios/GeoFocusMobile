@@ -24,6 +24,11 @@ class LocationsShow extends Component {
     this.props.setPadding(20);
   }
 
+  report = () => {
+    this.props.setReport({location_id: this.props.location.id});
+    history.push("/reports/new");
+  }
+
   render(){
     const {photos, location, user} = this.props;
     const {city, title, id} = location;
@@ -50,6 +55,7 @@ class LocationsShow extends Component {
             :
             <Text style={[baseStyles.p, {marginBottom: 10}]}>You must verify your email in order to upload photos to this location.</Text>
           }
+          <Button content="Report Content" onPress={this.report}/>
           <PhotoGrid photos={photos} />
           <View style={{height: 20}}></View>
           <ReviewsNew />

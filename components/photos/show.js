@@ -22,6 +22,11 @@ class PhotosShow extends Component {
     this.props.getLocation(location_id, () => history.push("/locations/"+location_id, (e) => console.log("Error", e)));
   }
 
+  reportPhoto = () => {
+    this.props.setReport({photo_id: this.props.id});
+    history.push("/reports/new");
+  }
+
   render(){
     const {img_url, caption, views, display, profile_img, location_title, user_zoom, user_width, user_height, user_offsetX, user_offsetY} = this.props;
     return(
@@ -42,6 +47,7 @@ class PhotosShow extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        <Button content="Report Content" onPress={this.reportPhoto}/>
         <View style={{height: 100}}></View>
       </View>
     );

@@ -38,6 +38,8 @@ import SearchResults from "./components/layout/searchResults";
 import Nav from "./components/layout/nav";
 import Spinner from "./components/widgets/spinner";
 
+import ReportsNew from './components/reports/new';
+
 class MyLayout extends Component{
   render(){
     const {scroll, padding} = this.props;
@@ -62,6 +64,7 @@ class MyLayout extends Component{
                   <Route path="/users/profile/show" component={Profile} />
                   <Route exact path="/photos/:id" component={PhotosShow} />
                   <Route path="/photos/new/upload" component={PhotosNew} />
+                  <Route path="/reports/new" component={ReportsNew} />
                 </Switch>
               </Router>
             </KeyboardAvoidingView>

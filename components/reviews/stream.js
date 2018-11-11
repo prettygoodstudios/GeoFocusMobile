@@ -9,6 +9,7 @@ import baseStyles from "../../styles";
 
 import ProfileImage from "../users/profileImage";
 import ReviewsEdit from "./edit";
+import Button from "../widgets/button";
 
 class ReviewStream extends Component {
 
@@ -20,6 +21,11 @@ class ReviewStream extends Component {
   success = (id) => {
     this.props.setLoading(false);
     history.push("/users/show/"+id);
+  }
+
+  report = (id) => {
+    this.props.setReport({review_id: id});
+    history.push("/reports/new");
   }
 
   render(){
@@ -41,6 +47,7 @@ class ReviewStream extends Component {
               </View>
               <Text style={baseStyles.p}>{message}</Text>
               <ReviewsEdit id={id} userId={user_id} score={score} message={message}/>
+              <Button content="Report Content" onPress={() => this.report(id)}/>
             </View>
           )
         })}
