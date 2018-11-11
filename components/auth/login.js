@@ -89,6 +89,7 @@ class Login extends Component {
         <Error error={this.state.error} />
         <Button onPress={() => this.submit()} content="Sign In" />
         <Button onPress={() => history.push("/register")} content="Create Acount" />
+        <Button onPress={() => history.push("/users/resetPassword")} content="Forgot Password?" />
         <View style={{height: 20}}></View>
       </View>
     );
