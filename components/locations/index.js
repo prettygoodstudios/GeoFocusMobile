@@ -67,6 +67,16 @@ class LocationsIndex extends Component {
     this.props.setMyLocation(parsedLocation);
   };
 
+  goToLocation = (id) => {
+    this.props.setLoading(true);
+    this.props.getLocation(id, (id) => this.goToLocationSuccess(id), this.props.error);
+  }
+
+  goToLocationSuccess = (id) => {
+    this.props.setLoading(false);
+    history.push(`/locations/${id}`);
+  }
+
   render(){
     const {loaded, location} = this.state;
     const {user} = this.props;
@@ -75,11 +85,11 @@ class LocationsIndex extends Component {
         <MapView style={[mapStyles.map]} region={{...location, latitudeDelta: 0.1322, longitudeDelta: 0.0821}}>
           {loaded && this.props.locations.map((l, i) => {
             return(
-              <Marker title={l.city} image={require('../../assets/images/pinicon.png')} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))  : () => console.log("Callout Click")}>
+              <Marker title={l.city} image={require('../../assets/images/pinicon.png')} coordinate={{latitude: l.latitude, longitude: l.longitude}} key={i} style={[mapStyles.marker]} onCalloutPress={Platform.OS !== "ios" ? () => this.goToLocation(l.id) : () => console.log("Callout Click")}>
                 <Callout style={mapStyles.callout} >
                   <Text style={[baseStyles.h1]}>{l.title}</Text>
                   <Text style={{width: 300}}>{l.full_address}</Text>
-                  {Platform.OS === "ios" ? <Button content="View" onPress={() => this.props.getLocation(l.id, () => history.push(`/locations/${l.id}`), () => console.log("Failure!"))}/> : <Text style={{width: 300}}>Tap to View!</Text>}
+                  {Platform.OS === "ios" ? <Button content="View" onPress={() => this.goToLocation(l.id)}/> : <Text style={{width: 300}}>Tap to View!</Text>}
                 </Callout>
               </Marker>
             )

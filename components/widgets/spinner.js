@@ -1,59 +1,24 @@
 import React, {Component} from "react";
-import {Text, View, Animated, Easing} from "react-native";
-import {Icon} from "react-native-elements";
+import {Text, View} from "react-native";
 import {connect} from "react-redux";
 
+import {OFF_WHITE} from "../../styles";
 import styles from "../../styles/spinner";
-
+import {BarIndicator} from 'react-native-indicators';
 
 class Spinner extends Component {
 
-
-  constructor(){
-      super();
-      this.state = {
-        spinValue: new Animated.Value(0)
-      }
-      this.spin = Animated.loop(
-        Animated.timing(                  // Animate over time
-          this.state.spinValue,            // The animated value to drive
-          {
-            toValue: 360,                   // Animate to opacity: 1 (opaque)
-            duration: 2000,
-            easing: Easing.linear              // Make it take a while
-          }
-        ).start()
-      );
-  }
-
-  componentDidMount(){
-    this.spin.start();
-  }
-
-
-
-  componentWillUnmount(){
-    this.spin.stop();
-  }
-
   render(){
-    const spin = this.state.spinValue.interpolate({
-      inputRange: [0, 360],
-      outputRange: ['0deg', '360deg']
-    });
     if(!this.props.loading){
       return <View></View>;
     }
     return(
       <View style={styles.spinnerMask}>
-        <View style={styles.spinner}>
-          <Animated.View  style={{transform: [{rotate: spin}] }}>
-            <Icon name="cached" iconStyle={styles.spinnerIcon} />
-          </Animated.View >
-        </View>
+        <BarIndicator color={OFF_WHITE} size={100}/>
       </View>
     );
   }
+
 }
 
 function mapStateToProps(state){

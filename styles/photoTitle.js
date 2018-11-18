@@ -30,7 +30,9 @@ const photoTitleStyles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.3)",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingLeft: 40,
+    paddingRight: 40
   },
   imageHolder: {
     width: "100%",

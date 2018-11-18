@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import * as actions from "../../actions";
 import baseStyles from "../../styles";
+import reviewStyles from "../../styles/review";
 
 import ReviewsForm from "./form";
 
@@ -26,7 +27,7 @@ class ReviewsNew extends Component {
 
     return(
       <View>
-        {averageScore != -5 && <Text style={baseStyles.h1}>Average Review: {averageScore}</Text>}
+        {averageScore != -5 && <Text style={reviewStyles.averageScore}>Average Review: {averageScore}</Text>}
         {canPost &&
           <View>
             { user.verified ?

@@ -3,6 +3,12 @@ import {OFF_WHITE, MAIN_FONT} from "./index";
 
 
 const reviewStyles = StyleSheet.create({
+  averageScore: {
+    fontSize: 25,
+    fontFamily: MAIN_FONT,
+    fontWeight: "500",
+    marginBottom: 10
+  },
   profileWrapper: {
     flexDirection: "row",
     alignItems: "center"
